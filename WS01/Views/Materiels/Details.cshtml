@@ -1,0 +1,36 @@
+﻿@model WS01.Models.Materiels
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Materiels</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Identifiant)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Identifiant)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DateAchat)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DateAchat)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FkMaterielsTypesNavigation)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FkMaterielsTypesNavigation.PkIxMaterielsTypes)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.PkMateriels">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
