@@ -83,7 +83,9 @@ namespace WS01.Controllers
             {
                 return NotFound();
             }
-            ViewData["FkMaterielsTypes"] = new SelectList(_context.IxMaterielsTypes, "PkIxMaterielsTypes", "PkIxMaterielsTypes", materiels.FkMaterielsTypes);
+            //ViewData["FkMaterielsTypes"] = new SelectList(_context.IxMaterielsTypes, "PkIxMaterielsTypes", "PkIxMaterielsTypes", materiels.FkMaterielsTypes);
+            ViewData["MaterielType"] = new SelectList(_context.IxMaterielsTypes, "PkIxMaterielsTypes", "MaterielType", materiels.FkMaterielsTypes);
+
             return View(materiels);
         }
 
@@ -119,7 +121,7 @@ namespace WS01.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["FkMaterielsTypes"] = new SelectList(_context.IxMaterielsTypes, "PkIxMaterielsTypes", "PkIxMaterielsTypes", materiels.FkMaterielsTypes);
+            ViewData["FkMaterielsTypes"] = new SelectList(_context.IxMaterielsTypes, "PkIxMaterielsTypes", "FkMaterielsTypesNavigation.MaterielType", materiels.FkMaterielsTypes);
             return View(materiels);
         }
 
