@@ -3,13 +3,35 @@
 @{
     ViewData["Title"] = "Index";
 }
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#myInput").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#myTable tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+        $(document).ready(function () {
+            $('.datefield').each(function () {
+                if (datefield = "Livré") {
+                    $(this).css('color', 'red');
+                }
+            });
+        });
+    </script>
+}
+
 
 <h1>Index</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
+<input class="form-control" id="myInput" type="text" placeholder="Search..">
+<br>
+<table class="table table-bordered table-hover">
     <thead>
         <tr>
             <th>
@@ -36,36 +58,37 @@
             <th></th>
         </tr>
     </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateDebut)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateFin)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Commentaire)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FkAspNetUsersNavigation.UserName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FkIxAntenneNavigation.Ville)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FkMaterielsNavigation.Identifiant)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FkMaterielsStatutsNavigation.MaterielStatut)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Pk">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Pk">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Pk">Delete</a>
-            </td>
-        </tr>
-}
+    <tbody id="myTable">
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateDebut)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateFin)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Commentaire)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FkAspNetUsersNavigation.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FkIxAntenneNavigation.Ville)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FkMaterielsNavigation.Identifiant)
+                </td>
+                <td class="datefield">
+                    @Html.DisplayFor(modelItem => item.FkMaterielsStatutsNavigation.MaterielStatut)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Pk">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Pk">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Pk">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

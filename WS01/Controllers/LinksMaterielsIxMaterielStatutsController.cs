@@ -81,10 +81,10 @@ namespace WS01.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["FkAspNetUsers"] = new SelectList(_context.AspNetUsers, "Id", "Id", linksMaterielsIxMaterielStatuts.FkAspNetUsers);
-            ViewData["FkIxAntenne"] = new SelectList(_context.IxAntenne, "PkAntenne", "PkAntenne", linksMaterielsIxMaterielStatuts.FkIxAntenne);
-            ViewData["FkMateriels"] = new SelectList(_context.Materiels, "PkMateriels", "PkMateriels", linksMaterielsIxMaterielStatuts.FkMateriels);
-            ViewData["FkMaterielsStatuts"] = new SelectList(_context.IxMaterielsStatuts, "PkIxMaterielsStatuts", "PkIxMaterielsStatuts", linksMaterielsIxMaterielStatuts.FkMaterielsStatuts);
+            ViewData["FkAspNetUsers"] = new SelectList(_context.AspNetUsers, "Id", "Email");
+            ViewData["FkIxAntenne"] = new SelectList(_context.IxAntenne, "PkAntenne", "Ville");
+            ViewData["FkMateriels"] = new SelectList(_context.Materiels, "PkMateriels", "Identifiant");
+            ViewData["FkMaterielsStatuts"] = new SelectList(_context.IxMaterielsStatuts, "PkIxMaterielsStatuts", "MaterielStatut");
             return View(linksMaterielsIxMaterielStatuts);
         }
 
@@ -101,10 +101,13 @@ namespace WS01.Controllers
             {
                 return NotFound();
             }
-            ViewData["FkAspNetUsers"] = new SelectList(_context.AspNetUsers, "Id", "Id", linksMaterielsIxMaterielStatuts.FkAspNetUsers);
-            ViewData["FkIxAntenne"] = new SelectList(_context.IxAntenne, "PkAntenne", "PkAntenne", linksMaterielsIxMaterielStatuts.FkIxAntenne);
-            ViewData["FkMateriels"] = new SelectList(_context.Materiels, "PkMateriels", "PkMateriels", linksMaterielsIxMaterielStatuts.FkMateriels);
-            ViewData["FkMaterielsStatuts"] = new SelectList(_context.IxMaterielsStatuts, "PkIxMaterielsStatuts", "PkIxMaterielsStatuts", linksMaterielsIxMaterielStatuts.FkMaterielsStatuts);
+            //ViewData["FkMaterielsTypes"] = new SelectList(_context.IxMaterielsTypes, "PkIxMaterielsTypes", "PkIxMaterielsTypes", materiels.FkMaterielsTypes);
+            //ViewData["MaterielType"] = new SelectList(_context.IxMaterielsTypes, "PkIxMaterielsTypes", "MaterielType", materiels.FkMaterielsTypes);
+
+            ViewData["FkAspNetUsers"] = new SelectList(_context.AspNetUsers, "Id", "Email");
+            ViewData["FkIxAntenne"] = new SelectList(_context.IxAntenne, "PkAntenne", "Ville");
+            ViewData["FkMateriels"] = new SelectList(_context.Materiels, "PkMateriels", "Identifiant");
+            ViewData["FkMaterielsStatuts"] = new SelectList(_context.IxMaterielsStatuts, "PkIxMaterielsStatuts", "MaterielStatut");
             return View(linksMaterielsIxMaterielStatuts);
         }
 
