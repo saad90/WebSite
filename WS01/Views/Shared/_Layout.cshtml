@@ -31,7 +31,7 @@
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="LinksMaterielsIxMaterielStatuts" asp-action="Index">Links</a>
                             </li>
-                            if (User.IsInRole("Admin") || User.IsInRole("Manager"))
+                            if (User.IsInRole("Admin"))
                             {
                                 <li class="nav-item">
                                     <a class="nav-link text-dark" asp-area="" asp-controller="IxMaterielsStatuts" asp-action="Index">Statuts</a>
@@ -46,16 +46,25 @@
                                     <a class="nav-link text-dark" asp-area="" asp-controller="Materiels" asp-action="Index">Materiels</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="LinksMaterielsIxMaterielStatuts" asp-action="Index">Links</a>
-                                </li>
-                            }
-                            if (User.IsInRole("Admin"))
-                            {
-                                <li class="nav-item">
                                     <a class="nav-link text-dark" asp-area="" asp-controller="AspNetRoles" asp-action="Index">Roles</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link text-dark" asp-area="" asp-controller="AspNetUserRoles" asp-action="Index">SetRole</a>
+                                </li>
+                            }
+                            if (User.IsInRole("Manager"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="IxMaterielsStatuts" asp-action="Index">Statuts</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="IxAntennes" asp-action="Index">Antennes</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="IxMaterielsTypes" asp-action="Index">Types</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Materiels" asp-action="Index">Materiels</a>
                                 </li>
                             }
                         }
