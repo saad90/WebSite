@@ -61,10 +61,10 @@ namespace WS01.Controllers
         // GET: LinksMaterielsIxMaterielStatuts/Create
         public IActionResult Create()
         {
-            ViewData["FkAspNetUsers"] = new SelectList(_context.AspNetUsers, "Id", "Id");
-            ViewData["FkIxAntenne"] = new SelectList(_context.IxAntenne, "PkAntenne", "PkAntenne");
-            ViewData["FkMateriels"] = new SelectList(_context.Materiels, "PkMateriels", "PkMateriels");
-            ViewData["FkMaterielsStatuts"] = new SelectList(_context.IxMaterielsStatuts, "PkIxMaterielsStatuts", "PkIxMaterielsStatuts");
+            ViewData["FkAspNetUsers"] = new SelectList(_context.AspNetUsers, "Id", "UserName");
+            ViewData["FkIxAntenne"] = new SelectList(_context.IxAntenne, "PkAntenne", "Ville");
+            ViewData["FkMateriels"] = new SelectList(_context.Materiels, "PkMateriels", "Identifiant");
+            ViewData["FkMaterielsStatuts"] = new SelectList(_context.IxMaterielsStatuts, "PkIxMaterielsStatuts", "MaterielStatut");
             return View();
         }
 
