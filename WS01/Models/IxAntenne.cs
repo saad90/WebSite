@@ -14,7 +14,7 @@ namespace WS01.Models
         public string Ville { get; set; }
         [Display(Name = "Code Postal")]
         public string CodePostal { get; set; }
-        public int? Tel { get; set; }
+        public string Tel { get; set; }
 
         public virtual ICollection<LinksMaterielsIxMaterielStatuts> LinksMaterielsIxMaterielStatuts { get; set; }
     }

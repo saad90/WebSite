@@ -32,6 +32,8 @@ namespace WS01.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+                optionsBuilder.UseSqlServer("Server=DESKTOP-7EGBTD2\\SQLEXPRESS;Database=WS01DB;Trusted_Connection=True;");
             }
         }
 
@@ -39,9 +41,9 @@ namespace WS01.Models
         {
             modelBuilder.Entity<AspNetRoleClaims>(entity =>
             {
-                entity.HasIndex(e => e.RoleId);
-
-                entity.Property(e => e.RoleId).IsRequired();
+                entity.Property(e => e.RoleId)
+                    .IsRequired()
+                    .HasMaxLength(450);
 
                 entity.HasOne(d => d.Role)
                     .WithMany(p => p.AspNetRoleClaims)
@@ -50,11 +52,6 @@ namespace WS01.Models
 
             modelBuilder.Entity<AspNetRoles>(entity =>
             {
-                entity.HasIndex(e => e.NormalizedName)
-                    .HasName("RoleNameIndex")
-                    .IsUnique()
-                    .HasFilter("([NormalizedName] IS NOT NULL)");
-
                 entity.Property(e => e.Name).HasMaxLength(256);
 
                 entity.Property(e => e.NormalizedName).HasMaxLength(256);
@@ -62,9 +59,9 @@ namespace WS01.Models
 
             modelBuilder.Entity<AspNetUserClaims>(entity =>
             {
-                entity.HasIndex(e => e.UserId);
-
-                entity.Property(e => e.UserId).IsRequired();
+                entity.Property(e => e.UserId)
+                    .IsRequired()
+                    .HasMaxLength(450);
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.AspNetUserClaims)
@@ -75,13 +72,13 @@ namespace WS01.Models
             {
                 entity.HasKey(e => new { e.LoginProvider, e.ProviderKey });
 
-                entity.HasIndex(e => e.UserId);
-
                 entity.Property(e => e.LoginProvider).HasMaxLength(128);
 
                 entity.Property(e => e.ProviderKey).HasMaxLength(128);
 
-                entity.Property(e => e.UserId).IsRequired();
+                entity.Property(e => e.UserId)
+                    .IsRequired()
+                    .HasMaxLength(450);
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.AspNetUserLogins)
@@ -91,8 +88,6 @@ namespace WS01.Models
             modelBuilder.Entity<AspNetUserRoles>(entity =>
             {
                 entity.HasKey(e => new { e.UserId, e.RoleId });
-
-                entity.HasIndex(e => e.RoleId);
 
                 entity.HasOne(d => d.Role)
                     .WithMany(p => p.AspNetUserRoles)
@@ -118,14 +113,6 @@ namespace WS01.Models
 
             modelBuilder.Entity<AspNetUsers>(entity =>
             {
-                entity.HasIndex(e => e.NormalizedEmail)
-                    .HasName("EmailIndex");
-
-                entity.HasIndex(e => e.NormalizedUserName)
-                    .HasName("UserNameIndex")
-                    .IsUnique()
-                    .HasFilter("([NormalizedUserName] IS NOT NULL)");
-
                 entity.Property(e => e.Email).HasMaxLength(256);
 
                 entity.Property(e => e.NormalizedEmail).HasMaxLength(256);
@@ -138,7 +125,7 @@ namespace WS01.Models
             modelBuilder.Entity<IxAntenne>(entity =>
             {
                 entity.HasKey(e => e.PkAntenne)
-                    .HasName("PK__Ix_Anten__B9C5C310302600E7");
+                    .HasName("PK__Ix_Anten__B9C5C31085A59761");
 
                 entity.ToTable("Ix_Antenne");
 
@@ -149,6 +136,10 @@ namespace WS01.Models
                     .HasMaxLength(5)
                     .IsUnicode(false);
 
+                entity.Property(e => e.Tel)
+                    .HasMaxLength(10)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.Ville)
                     .HasMaxLength(255)
                     .IsUnicode(false);
@@ -157,7 +148,7 @@ namespace WS01.Models
             modelBuilder.Entity<IxMaterielsStatuts>(entity =>
             {
                 entity.HasKey(e => e.PkIxMaterielsStatuts)
-                    .HasName("PK__Ix_Mater__4C088D1AD2805C63");
+                    .HasName("PK__Ix_Mater__4C088D1A82697E00");
 
                 entity.ToTable("Ix_Materiels_Statuts");
 
@@ -172,7 +163,7 @@ namespace WS01.Models
             modelBuilder.Entity<IxMaterielsTypes>(entity =>
             {
                 entity.HasKey(e => e.PkIxMaterielsTypes)
-                    .HasName("PK__Ix_Mater__8CF992DE88FB1410");
+                    .HasName("PK__Ix_Mater__8CF992DEB64FBAA9");
 
                 entity.ToTable("Ix_Materiels_Types");
 
@@ -187,7 +178,7 @@ namespace WS01.Models
             modelBuilder.Entity<LinksMaterielsIxMaterielStatuts>(entity =>
             {
                 entity.HasKey(e => e.Pk)
-                    .HasName("PK__LINKS_MA__321507E7679EF663");
+                    .HasName("PK__LINKS_MA__321507E7177C3493");
 
                 entity.ToTable("LINKS_MATERIELS_IX_MATERIEL_STATUTS");
 
@@ -214,28 +205,28 @@ namespace WS01.Models
                 entity.HasOne(d => d.FkAspNetUsersNavigation)
                     .WithMany(p => p.LinksMaterielsIxMaterielStatuts)
                     .HasForeignKey(d => d.FkAspNetUsers)
-                    .HasConstraintName("FK__LINKS_MAT__Fk_As__4222D4EF");
+                    .HasConstraintName("FK__LINKS_MAT__Fk_As__44FF419A");
 
                 entity.HasOne(d => d.FkIxAntenneNavigation)
                     .WithMany(p => p.LinksMaterielsIxMaterielStatuts)
                     .HasForeignKey(d => d.FkIxAntenne)
-                    .HasConstraintName("FK__LINKS_MAT__Fk_Ix__4316F928");
+                    .HasConstraintName("FK__LINKS_MAT__Fk_Ix__45F365D3");
 
                 entity.HasOne(d => d.FkMaterielsNavigation)
                     .WithMany(p => p.LinksMaterielsIxMaterielStatuts)
                     .HasForeignKey(d => d.FkMateriels)
-                    .HasConstraintName("FK__LINKS_MAT__Fk_Ma__440B1D61");
+                    .HasConstraintName("FK__LINKS_MAT__Fk_Ma__46E78A0C");
 
                 entity.HasOne(d => d.FkMaterielsStatutsNavigation)
                     .WithMany(p => p.LinksMaterielsIxMaterielStatuts)
                     .HasForeignKey(d => d.FkMaterielsStatuts)
-                    .HasConstraintName("FK__LINKS_MAT__Fk_Ma__44FF419A");
+                    .HasConstraintName("FK__LINKS_MAT__Fk_Ma__47DBAE45");
             });
 
             modelBuilder.Entity<Materiels>(entity =>
             {
                 entity.HasKey(e => e.PkMateriels)
-                    .HasName("PK__Materiel__7FF74FBBA9B0F3AF");
+                    .HasName("PK__Materiel__7FF74FBBCB2391D4");
 
                 entity.Property(e => e.PkMateriels).HasColumnName("Pk_Materiels");
 
@@ -252,7 +243,7 @@ namespace WS01.Models
                 entity.HasOne(d => d.FkMaterielsTypesNavigation)
                     .WithMany(p => p.Materiels)
                     .HasForeignKey(d => d.FkMaterielsTypes)
-                    .HasConstraintName("FK__Materiels__Fk_Ma__3F466844");
+                    .HasConstraintName("FK__Materiels__Fk_Ma__4222D4EF");
             });
 
             OnModelCreatingPartial(modelBuilder);
