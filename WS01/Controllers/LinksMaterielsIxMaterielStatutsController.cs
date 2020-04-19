@@ -26,14 +26,27 @@ namespace WS01.Controllers
         public async Task<IActionResult> Index()
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // will give the user's userId
-            var userName = User.FindFirstValue(ClaimTypes.Name); // will give the user's userName
-
-            var wS01DBContext = _context.LinksMaterielsIxMaterielStatuts
-                .Include(l => l.FkAspNetUsersNavigation).Where(n => n.FkAspNetUsersNavigation.Id == userId)
+            var userNa = User.FindFirstValue(ClaimTypes.Name); // will give the user's userName
+            var useradmin = "37c021e6-2d13-43ba-8d43-ac80907f6249";
+            if(userId == useradmin)
+            {
+                var wS01DBContext = _context.LinksMaterielsIxMaterielStatuts
+                .Include(l => l.FkAspNetUsersNavigation)
                 .Include(l => l.FkIxAntenneNavigation)
                 .Include(l => l.FkMaterielsNavigation)
                 .Include(l => l.FkMaterielsStatutsNavigation);
-            return View(await wS01DBContext.ToListAsync());
+                return View(await wS01DBContext.ToListAsync());
+            }
+            else
+            {
+                var wS01DBContext = _context.LinksMaterielsIxMaterielStatuts
+               .Include(l => l.FkAspNetUsersNavigation).Where(l => l.FkAspNetUsersNavigation.Id == userId)
+               .Include(l => l.FkIxAntenneNavigation)
+               .Include(l => l.FkMaterielsNavigation)
+               .Include(l => l.FkMaterielsStatutsNavigation);
+                return View(await wS01DBContext.ToListAsync());
+            }
+           
         }
 
         // GET: LinksMaterielsIxMaterielStatuts/Details/5
