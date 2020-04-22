@@ -21,7 +21,7 @@ namespace WS01.Models
         public int? FkIxAntenne { get; set; }
 
         [Display(Name = "Email")]
-        [Required(ErrorMessage = "Please enter Email"), MaxLength(30)]//, MaxLength(30)
+        [Required(ErrorMessage = "Please enter Email")]//, MaxLength(30)
         public string FkAspNetUsers { get; set; }
 
         public DateTime? DateDebut { get; set; }
