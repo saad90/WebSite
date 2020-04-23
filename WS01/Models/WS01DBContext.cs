@@ -186,11 +186,12 @@ namespace WS01.Models
 
                 entity.Property(e => e.DateDebut)
                     .HasColumnName("Date_Debut")
-                    .HasColumnType("date");
+                    .HasMaxLength(50)
+                    .IsFixedLength();
 
                 entity.Property(e => e.DateFin)
                     .HasColumnName("Date_fin")
-                    .HasColumnType("date");
+                    .HasMaxLength(30);
 
                 entity.Property(e => e.FkAspNetUsers)
                     .HasColumnName("Fk_AspNetUsers")

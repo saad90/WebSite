@@ -13,7 +13,6 @@ namespace WS01.Models
         public int? FkMateriels { get; set; }
 
         [Display(Name = "Statut")]
-        [Required(ErrorMessage = "Please enter Statut")]//, MaxLength(30)
         public int? FkMaterielsStatuts { get; set; }
 
         [Display(Name = "Antenne")]
@@ -21,11 +20,10 @@ namespace WS01.Models
         public int? FkIxAntenne { get; set; }
 
         [Display(Name = "Email")]
-        [Required(ErrorMessage = "Please enter Email")]//, MaxLength(30)
         public string FkAspNetUsers { get; set; }
 
-        public DateTime? DateDebut { get; set; }
-        public DateTime? DateFin { get; set; }
+        public string DateDebut { get; set; }
+        public string? DateFin { get; set; }
         public string Commentaire { get; set; }
 
         [Display(Name = "Utilisateur")]

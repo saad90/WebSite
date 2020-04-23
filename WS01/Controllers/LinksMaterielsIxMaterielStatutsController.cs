@@ -76,6 +76,7 @@ namespace WS01.Controllers
         {
             ViewData["FkAspNetUsers"] = new SelectList(_context.AspNetUsers, "Id", "UserName");
             ViewBag.idd = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            ViewBag.dat = DateTime.Now.ToString("dd MMMM yyyy");
             ViewData["FkIxAntenne"] = new SelectList(_context.IxAntenne, "PkAntenne", "Ville");
             ViewData["FkMateriels"] = new SelectList(_context.Materiels, "PkMateriels", "Identifiant");
             ViewData["FkMaterielsStatuts"] = new SelectList(_context.IxMaterielsStatuts, "PkIxMaterielsStatuts", "MaterielStatut");
@@ -91,9 +92,16 @@ namespace WS01.Controllers
         {
             if (ModelState.IsValid)
             {
+                linksMaterielsIxMaterielStatuts.DateDebut = DateTime.Now.ToString("dd MMMM yyyy");
                 _context.Add(linksMaterielsIxMaterielStatuts);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
+            }
+            else
+            {
+                var errors = ModelState.Select(x => x.Value.Errors)
+                                       .Where(y => y.Count > 0)
+                                       .ToList();
             }
             ViewData["FkAspNetUsers"] = new SelectList(_context.AspNetUsers, "Id", "Email");
             ViewData["FkIxAntenne"] = new SelectList(_context.IxAntenne, "PkAntenne", "Ville");
