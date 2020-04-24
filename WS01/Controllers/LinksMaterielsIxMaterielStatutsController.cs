@@ -92,7 +92,6 @@ namespace WS01.Controllers
         {
             if (ModelState.IsValid)
             {
-                linksMaterielsIxMaterielStatuts.DateDebut = DateTime.Now.ToString("dd MMMM yyyy");
                 _context.Add(linksMaterielsIxMaterielStatuts);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -125,7 +124,6 @@ namespace WS01.Controllers
             }
             //ViewData["FkMaterielsTypes"] = new SelectList(_context.IxMaterielsTypes, "PkIxMaterielsTypes", "PkIxMaterielsTypes", materiels.FkMaterielsTypes);
             //ViewData["MaterielType"] = new SelectList(_context.IxMaterielsTypes, "PkIxMaterielsTypes", "MaterielType", materiels.FkMaterielsTypes);
-
             ViewData["FkAspNetUsers"] = new SelectList(_context.AspNetUsers, "Id", "Email");
             ViewData["FkIxAntenne"] = new SelectList(_context.IxAntenne, "PkAntenne", "Ville");
             ViewData["FkMateriels"] = new SelectList(_context.Materiels, "PkMateriels", "Identifiant");

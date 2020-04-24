@@ -14,11 +14,13 @@
             });
         });
         $(document).ready(function () {
-            $('.datefield').each(function () {
-                if (datefield = "Livré") {
-                    $(this).css('color', 'red');
-                }
-            });
+            //$('.datefield').each(function () {
+            //    if (datefield = "Livré") {
+            //        $(this).css('color', 'red');
+            //    }
+            //});
+            $("td:contains('Demandé')").css("color", "red");
+            $("td:contains('Livré')").css("color", "green");
         });
     </script>
 }
@@ -35,6 +37,18 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.FkAspNetUsersNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FkMaterielsNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FkIxAntenneNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FkMaterielsStatutsNavigation)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.DateDebut)
             </th>
             <th>
@@ -44,51 +58,43 @@
                 @Html.DisplayNameFor(model => model.Commentaire)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FkAspNetUsersNavigation)
+                Opérations
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FkIxAntenneNavigation)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FkMaterielsNavigation)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FkMaterielsStatutsNavigation)
-            </th>
-            <th></th>
         </tr>
     </thead>
     <tbody id="myTable">
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DateDebut)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DateFin)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Commentaire)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FkAspNetUsersNavigation.UserName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FkIxAntenneNavigation.Ville)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FkMaterielsNavigation.Identifiant)
-                </td>
-                <td class="datefield">
-                    @Html.DisplayFor(modelItem => item.FkMaterielsStatutsNavigation.MaterielStatut)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.Pk">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Pk">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Pk">Delete</a>
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FkAspNetUsersNavigation.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FkMaterielsNavigation.Identifiant)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FkIxAntenneNavigation.Ville)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FkMaterielsStatutsNavigation.MaterielStatut)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateDebut)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateFin)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Commentaire)
+            </td>
+
+
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Pk">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Pk">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Pk">Delete</a>
+            </td>
+        </tr>
         }
     </tbody>
 </table>

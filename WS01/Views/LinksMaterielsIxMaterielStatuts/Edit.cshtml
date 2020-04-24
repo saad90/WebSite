@@ -15,27 +15,28 @@
             <input type="hidden" asp-for="Pk" />
             <div class="form-group">
                 <label asp-for="FkMateriels" class="control-label"></label>
-                <select asp-for="FkMateriels" class="form-control" asp-items="ViewBag.FkMateriels"></select>
+                <select asp-for="FkMateriels" class="form-control" id="mat" asp-items="ViewBag.FkMateriels"></select>
                 <span asp-validation-for="FkMateriels" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="FkMaterielsStatuts" class="control-label"></label>
-                <select asp-for="FkMaterielsStatuts" class="form-control" asp-items="ViewBag.FkMaterielsStatuts"></select>
+                <select asp-for="FkMaterielsStatuts" class="form-control" id="sta" asp-items="ViewBag.FkMaterielsStatuts" ></select>
                 <span asp-validation-for="FkMaterielsStatuts" class="text-danger"></span>
+                <input type="button" id ="bwitina" value="Confirmez la réception" class="btn btn-primary" style="display: none;"/>
             </div>
             <div class="form-group">
                 <label asp-for="FkIxAntenne" class="control-label"></label>
-                <select asp-for="FkIxAntenne" class="form-control" asp-items="ViewBag.FkIxAntenne"></select>
+                <select asp-for="FkIxAntenne" class="form-control" id="ant"  asp-items="ViewBag.FkIxAntenne"></select>
                 <span asp-validation-for="FkIxAntenne" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="FkAspNetUsers" class="control-label"></label>
-                <select asp-for="FkAspNetUsers" class="form-control" asp-items="ViewBag.FkAspNetUsers"></select>
+                <select asp-for="FkAspNetUsers" class="form-control" asp-items="ViewBag.FkAspNetUsers"  readonly></select>
                 <span asp-validation-for="FkAspNetUsers" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="DateDebut" class="control-label"></label>
-                <input asp-for="DateDebut" class="form-control" />
+                <input asp-for="DateDebut" class="form-control" readonly/>
                 <span asp-validation-for="DateDebut" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -45,7 +46,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Commentaire" class="control-label"></label>
-                <input asp-for="Commentaire" class="form-control" />
+                <input asp-for="Commentaire" class="form-control" id="cmt"/>
                 <span asp-validation-for="Commentaire" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -61,4 +62,39 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        if ($("#sta option:selected").text()== "Demandé") {        
+            $("#sta").attr('readonly', 'readonly');
+        }
+        if ($("#sta option:selected").text() == "En préparation (Accepté)") {
+            $("#mat").attr('readonly', 'readonly');
+            $("#sta").attr('readonly', 'readonly');
+        }
+        if ($("#sta option:selected").text() == "Refusé") {
+            $("#mat").attr('readonly', 'readonly');
+            $("#sta").attr('readonly', 'readonly');
+            $("#ant").attr('readonly', 'readonly');
+            $("#cmt").attr('readonly', 'readonly');
+        }
+        if ($("#sta option:selected").text() == "Commandé") {
+            $("#mat").attr('readonly', 'readonly');
+            $("#sta").attr('readonly', 'readonly');
+        }
+        if ($("#sta option:selected").text() == "Envoyé") {
+            $("#mat").attr('readonly', 'readonly');
+            $("#ant").attr('readonly', 'readonly');
+            $("#bwitina").show();
+            $('#bwitina').click(function () {
+                $(this).hide();
+                $('#sta option[value=3]').attr('selected', 'selected');
+
+            });
+        }
+        if ($("#sta option:selected").text() == "Livré") {
+            $("#mat").attr('readonly', 'readonly');
+            $("#ant").attr('readonly', 'readonly');
+            $("#sta").attr('readonly', 'readonly');
+        }
+
+    </script>
 }
