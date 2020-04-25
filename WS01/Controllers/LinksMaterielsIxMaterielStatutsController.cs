@@ -12,7 +12,7 @@ using WS01.Models;
 
 namespace WS01.Controllers
 {
-    [Authorize(Roles = "Admin,Manager,User")]
+    [Authorize(Roles = "Admin,User")]
     public class LinksMaterielsIxMaterielStatutsController : Controller
     {
         private readonly WS01DBContext _context;
@@ -147,6 +147,14 @@ namespace WS01.Controllers
             {
                 try
                 {
+                    if(linksMaterielsIxMaterielStatuts.FkMaterielsStatuts == 3)
+                    {
+                        linksMaterielsIxMaterielStatuts.DateFin = DateTime.Now.ToString("dd MMMM yyyy");
+                    }
+                    else
+                    {
+                        linksMaterielsIxMaterielStatuts.DateFin = null;
+                    }
                     _context.Update(linksMaterielsIxMaterielStatuts);
                     await _context.SaveChangesAsync();
                 }

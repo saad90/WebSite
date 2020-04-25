@@ -14,13 +14,14 @@
             });
         });
         $(document).ready(function () {
-            //$('.datefield').each(function () {
-            //    if (datefield = "Livré") {
-            //        $(this).css('color', 'red');
-            //    }
-            //});
             $("td:contains('Demandé')").css("color", "red");
             $("td:contains('Livré')").css("color", "green");
+        });
+        $(document).ready(function () {
+            var userRole = '@(User.IsInRole("Admin") ? "true" : "false")';
+            if (userRole == 'false') { //user
+                $('#del').hide();
+            }
         });
     </script>
 }
@@ -92,7 +93,7 @@
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Pk">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.Pk">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Pk">Delete</a>
+                <a asp-action="Delete" asp-route-id="@item.Pk" id="del">Delete</a>
             </td>
         </tr>
         }

@@ -11,7 +11,7 @@ using WS01.Models;
 
 namespace WS01.Controllers
 {
-    [Authorize(Roles = "Admin,Manager")]
+    [Authorize(Roles = "Admin")]
     public class IxMaterielsStatutsController : Controller
     {
         private readonly WS01DBContext _context;
