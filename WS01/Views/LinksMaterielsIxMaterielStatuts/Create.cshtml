@@ -12,19 +12,10 @@
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
-            <div class="form-group">
-                <label asp-for="FkMaterielsNavigation.FkMaterielsTypes" class="control-label"></label>
-                <select asp-for="FkMaterielsNavigation.FkMaterielsTypes" class="form-control" asp-items="ViewBag.FkMaterielsTypes">
-                    <option selected disabled>Veuillez Sélectionner un Type de matériel</option>
-
-                </select>
-            </div>
-
             <div class="form-group">
                 <label asp-for="FkMateriels" class="control-label"></label>
-                <select asp-for="FkMateriels" class="form-control" asp-items="ViewBag.FkMateriels">
-                    <option selected disabled>Veuillez Sélectionner un matériel</option>
+                <select asp-for="FkMateriels" class="form-control" id="mat" asp-items="ViewBag.FkMateriels">
+                    <option selected>Veuillez Sélectionner un matériel</option>
                 </select>
             </div>
             <div class="form-group">
@@ -35,7 +26,7 @@
             <div class="form-group">
                 <label asp-for="FkIxAntenne" class="control-label"></label>
                 <select asp-for="FkIxAntenne" class="form-control" asp-items="ViewBag.FkIxAntenne">
-                    <option selected disabled>Veuillez Sélectionner une Agence</option>
+                    <option selected>Veuillez Sélectionner une Agence</option>
                 </select>
             </div>
             <div class="form-group">
@@ -72,9 +63,19 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 <script>
-        var number = "@ViewBag.idd";
-        $("#FkANU").val(number);
+    var number = "@ViewBag.idd";
+    $("#FkANU").val(number);
+    $("#stat").val(6);
+    var options = $("#mat").html();
+    $("#typ").change(function (e) {
+        var text = $("#typ :selected").text();
+        $("#mat").html(options);
+        if (text == "All") return;
+        $('#mat :not([text^="' + text.substr(0, 3) + '"])').remove();
 
-        $("#stat").val(6);    
+    });
+   
+    
+
 </script>
 }
