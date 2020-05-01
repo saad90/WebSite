@@ -65,15 +65,15 @@
 <script>
     var number = "@ViewBag.idd";
     $("#FkANU").val(number);
-    $("#stat").val(6);
-    var options = $("#mat").html();
-    $("#typ").change(function (e) {
-        var text = $("#typ :selected").text();
-        $("#mat").html(options);
-        if (text == "All") return;
-        $('#mat :not([text^="' + text.substr(0, 3) + '"])').remove();
+    $("#stat").val(1);
+    //var options = $("#mat").html();
+    //$("#typ").change(function (e) {
+    //    var text = $("#typ :selected").text();
+    //    $("#mat").html(options);
+    //    if (text == "All") return;
+    //    $('#mat :not([text^="' + text.substr(0, 3) + '"])').remove();
 
-    });
+    //});
    
     
 
