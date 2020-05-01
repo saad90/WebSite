@@ -28,7 +28,7 @@ namespace WS01.Services
             var client = new SendGridClient(apiKey);
             var msg = new SendGridMessage()
             {
-                From = new EmailAddress("benmakhloufsaad@gmail.com", Options.SendGridUser),
+                From = new EmailAddress("fatimazahra.elhasbi@gmail.com", Options.SendGridUser),
                 Subject = subject,
                 PlainTextContent = message,
                 HtmlContent = message
