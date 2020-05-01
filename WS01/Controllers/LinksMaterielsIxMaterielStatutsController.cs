@@ -147,7 +147,7 @@ namespace WS01.Controllers
             {
                 try
                 {
-                    if(linksMaterielsIxMaterielStatuts.FkMaterielsStatuts == 3)
+                    if(linksMaterielsIxMaterielStatuts.FkMaterielsStatuts == 6)
                     {
                         linksMaterielsIxMaterielStatuts.DateFin = DateTime.Now.ToString("dd MMMM yyyy");
                     }

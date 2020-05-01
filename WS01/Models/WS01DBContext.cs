@@ -32,7 +32,7 @@ namespace WS01.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Server=DESKTOP-7EGBTD2\\SQLEXPRESS;Database=WS01DB;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Server=SAAD-PC\\SQLEXPRESS;Database=WS01DB;Trusted_Connection=True;");
             }
         }
 
@@ -40,9 +40,9 @@ namespace WS01.Models
         {
             modelBuilder.Entity<AspNetRoleClaims>(entity =>
             {
-                entity.Property(e => e.RoleId)
-                    .IsRequired()
-                    .HasMaxLength(450);
+                entity.HasIndex(e => e.RoleId);
+
+                entity.Property(e => e.RoleId).IsRequired();
 
                 entity.HasOne(d => d.Role)
                     .WithMany(p => p.AspNetRoleClaims)
@@ -51,6 +51,11 @@ namespace WS01.Models
 
             modelBuilder.Entity<AspNetRoles>(entity =>
             {
+                entity.HasIndex(e => e.NormalizedName)
+                    .HasName("RoleNameIndex")
+                    .IsUnique()
+                    .HasFilter("([NormalizedName] IS NOT NULL)");
+
                 entity.Property(e => e.Name).HasMaxLength(256);
 
                 entity.Property(e => e.NormalizedName).HasMaxLength(256);
@@ -58,9 +63,9 @@ namespace WS01.Models
 
             modelBuilder.Entity<AspNetUserClaims>(entity =>
             {
-                entity.Property(e => e.UserId)
-                    .IsRequired()
-                    .HasMaxLength(450);
+                entity.HasIndex(e => e.UserId);
+
+                entity.Property(e => e.UserId).IsRequired();
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.AspNetUserClaims)
@@ -71,13 +76,13 @@ namespace WS01.Models
             {
                 entity.HasKey(e => new { e.LoginProvider, e.ProviderKey });
 
+                entity.HasIndex(e => e.UserId);
+
                 entity.Property(e => e.LoginProvider).HasMaxLength(128);
 
                 entity.Property(e => e.ProviderKey).HasMaxLength(128);
 
-                entity.Property(e => e.UserId)
-                    .IsRequired()
-                    .HasMaxLength(450);
+                entity.Property(e => e.UserId).IsRequired();
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.AspNetUserLogins)
@@ -87,6 +92,8 @@ namespace WS01.Models
             modelBuilder.Entity<AspNetUserRoles>(entity =>
             {
                 entity.HasKey(e => new { e.UserId, e.RoleId });
+
+                entity.HasIndex(e => e.RoleId);
 
                 entity.HasOne(d => d.Role)
                     .WithMany(p => p.AspNetUserRoles)
@@ -112,6 +119,14 @@ namespace WS01.Models
 
             modelBuilder.Entity<AspNetUsers>(entity =>
             {
+                entity.HasIndex(e => e.NormalizedEmail)
+                    .HasName("EmailIndex");
+
+                entity.HasIndex(e => e.NormalizedUserName)
+                    .HasName("UserNameIndex")
+                    .IsUnique()
+                    .HasFilter("([NormalizedUserName] IS NOT NULL)");
+
                 entity.Property(e => e.Email).HasMaxLength(256);
 
                 entity.Property(e => e.NormalizedEmail).HasMaxLength(256);
@@ -123,15 +138,14 @@ namespace WS01.Models
 
             modelBuilder.Entity<IxAntenne>(entity =>
             {
-                entity.HasKey(e => e.PkAntenne)
-                    .HasName("PK__Ix_Anten__B9C5C31085A59761");
+                entity.HasKey(e => e.PkAntenne);
 
                 entity.ToTable("Ix_Antenne");
 
                 entity.Property(e => e.PkAntenne).HasColumnName("Pk_Antenne");
 
                 entity.Property(e => e.CodePostal)
-                    .HasColumnName("Code_postal")
+                    .HasColumnName("Code_Postal")
                     .HasMaxLength(5)
                     .IsUnicode(false);
 
@@ -146,8 +160,7 @@ namespace WS01.Models
 
             modelBuilder.Entity<IxMaterielsStatuts>(entity =>
             {
-                entity.HasKey(e => e.PkIxMaterielsStatuts)
-                    .HasName("PK__Ix_Mater__4C088D1A82697E00");
+                entity.HasKey(e => e.PkIxMaterielsStatuts);
 
                 entity.ToTable("Ix_Materiels_Statuts");
 
@@ -161,8 +174,7 @@ namespace WS01.Models
 
             modelBuilder.Entity<IxMaterielsTypes>(entity =>
             {
-                entity.HasKey(e => e.PkIxMaterielsTypes)
-                    .HasName("PK__Ix_Mater__8CF992DEB64FBAA9");
+                entity.HasKey(e => e.PkIxMaterielsTypes);
 
                 entity.ToTable("Ix_Materiels_Types");
 
@@ -176,23 +188,23 @@ namespace WS01.Models
 
             modelBuilder.Entity<LinksMaterielsIxMaterielStatuts>(entity =>
             {
-                entity.HasKey(e => e.Pk)
-                    .HasName("PK__LINKS_MA__321507E7177C3493");
+                entity.HasKey(e => e.Pk);
 
                 entity.ToTable("LINKS_MATERIELS_IX_MATERIEL_STATUTS");
 
-                entity.Property(e => e.Commentaire).HasMaxLength(255);
+                entity.Property(e => e.Commentaire).HasMaxLength(510);
 
                 entity.Property(e => e.DateDebut)
                     .HasColumnName("Date_Debut")
-                    .HasMaxLength(50)
+                    .HasMaxLength(100)
                     .IsFixedLength();
 
                 entity.Property(e => e.DateFin)
-                    .HasColumnName("Date_fin")
-                    .HasMaxLength(30);
+                    .HasColumnName("Date_Fin")
+                    .HasMaxLength(60);
 
                 entity.Property(e => e.FkAspNetUsers)
+                    .IsRequired()
                     .HasColumnName("Fk_AspNetUsers")
                     .HasMaxLength(450);
 
@@ -205,36 +217,35 @@ namespace WS01.Models
                 entity.HasOne(d => d.FkAspNetUsersNavigation)
                     .WithMany(p => p.LinksMaterielsIxMaterielStatuts)
                     .HasForeignKey(d => d.FkAspNetUsers)
-                    .HasConstraintName("FK__LINKS_MAT__Fk_As__44FF419A");
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__LINKS_MAT__Fk_As__4222D4EF");
 
                 entity.HasOne(d => d.FkIxAntenneNavigation)
                     .WithMany(p => p.LinksMaterielsIxMaterielStatuts)
                     .HasForeignKey(d => d.FkIxAntenne)
-                    .HasConstraintName("FK__LINKS_MAT__Fk_Ix__45F365D3");
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__LINKS_MAT__Fk_Ix__3B75D760");
 
                 entity.HasOne(d => d.FkMaterielsNavigation)
                     .WithMany(p => p.LinksMaterielsIxMaterielStatuts)
                     .HasForeignKey(d => d.FkMateriels)
-                    .HasConstraintName("FK__LINKS_MAT__Fk_Ma__46E78A0C");
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__LINKS_MAT__Fk_Ma__398D8EEE");
 
                 entity.HasOne(d => d.FkMaterielsStatutsNavigation)
                     .WithMany(p => p.LinksMaterielsIxMaterielStatuts)
                     .HasForeignKey(d => d.FkMaterielsStatuts)
-                    .HasConstraintName("FK__LINKS_MAT__Fk_Ma__47DBAE45");
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__LINKS_MAT__Fk_Ma__3A81B327");
             });
 
             modelBuilder.Entity<Materiels>(entity =>
             {
-                entity.HasKey(e => e.PkMateriels)
-                    .HasName("PK__Materiel__7FF74FBBCB2391D4");
+                entity.HasKey(e => e.PkMateriels);
 
                 entity.Property(e => e.PkMateriels).HasColumnName("Pk_Materiels");
 
-                entity.Property(e => e.DateAchat)
-                    .HasColumnName("Date_Achat")
-                    .HasColumnType("date");
-
-                entity.Property(e => e.FkMaterielsTypes).HasColumnName("Fk_Materiels_TYPES");
+                entity.Property(e => e.FkMaterielsTypes).HasColumnName("Fk_Materiels_Types");
 
                 entity.Property(e => e.Identifiant)
                     .HasMaxLength(255)
@@ -243,7 +254,8 @@ namespace WS01.Models
                 entity.HasOne(d => d.FkMaterielsTypesNavigation)
                     .WithMany(p => p.Materiels)
                     .HasForeignKey(d => d.FkMaterielsTypes)
-                    .HasConstraintName("FK__Materiels__Fk_Ma__4222D4EF");
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Materiels__Fk_Ma__36B12243");
             });
 
             OnModelCreatingPartial(modelBuilder);

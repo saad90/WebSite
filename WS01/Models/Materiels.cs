@@ -15,8 +15,6 @@ namespace WS01.Models
         
         public int? FkMaterielsTypes { get; set; }
         public string Identifiant { get; set; }
-        [Display(Name = "Date Achat")]
-        public DateTime? DateAchat { get; set; }
         [Display(Name = "Type Materiel")]
         public virtual IxMaterielsTypes FkMaterielsTypesNavigation { get; set; }
         public virtual ICollection<LinksMaterielsIxMaterielStatuts> LinksMaterielsIxMaterielStatuts { get; set; }
