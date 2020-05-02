@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WS01.Models;
+using WS01.Services;
 
 namespace WS01.Controllers
 {
@@ -16,6 +17,7 @@ namespace WS01.Controllers
     public class LinksMaterielsIxMaterielStatutsController : Controller
     {
         private readonly WS01DBContext _context;
+        EmailSender email = new EmailSender();
 
         public LinksMaterielsIxMaterielStatutsController(WS01DBContext context)
         {
@@ -138,6 +140,7 @@ namespace WS01.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Pk,FkMateriels,FkMaterielsStatuts,FkIxAntenne,FkAspNetUsers,DateDebut,DateFin,Commentaire")] LinksMaterielsIxMaterielStatuts linksMaterielsIxMaterielStatuts)
         {
+            string mailsend = string.Empty;
             if (id != linksMaterielsIxMaterielStatuts.Pk)
             {
                 return NotFound();
@@ -155,7 +158,9 @@ namespace WS01.Controllers
                     {
                         linksMaterielsIxMaterielStatuts.DateFin = null;
                     }
-                    _context.Update(linksMaterielsIxMaterielStatuts);
+                    _context.Update(linksMaterielsIxMaterielStatuts);                  
+                    mailsend = _context.AspNetUsers.First(c => c.Id == linksMaterielsIxMaterielStatuts.FkAspNetUsers).UserName;
+                    await email.SendEmailAsync(mailsend, "matériel modifié", "champ modifié");
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)

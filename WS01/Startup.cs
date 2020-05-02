@@ -48,7 +48,7 @@ namespace WS01
 
             services.AddTransient<IEmailSender, EmailSender>();
 
-            services.Configure<AuthMessageSenderOptions>(Configuration);
+            //services.Configure<AuthMessageSenderOptions>(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
