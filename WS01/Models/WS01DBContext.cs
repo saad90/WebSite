@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace WS01.Models
 {
-    public partial class WS01DBContext : DbContext
+    public partial class WS01DBContext : DbContext  
     {
         public WS01DBContext()
         {
