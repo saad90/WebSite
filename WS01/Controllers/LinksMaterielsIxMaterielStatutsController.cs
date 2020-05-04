@@ -141,6 +141,8 @@ namespace WS01.Controllers
         public async Task<IActionResult> Edit(int id, [Bind("Pk,FkMateriels,FkMaterielsStatuts,FkIxAntenne,FkAspNetUsers,DateDebut,DateFin,Commentaire")] LinksMaterielsIxMaterielStatuts linksMaterielsIxMaterielStatuts)
         {
             string mailsend = string.Empty;
+            string sujet = string.Empty;
+            string message = string.Empty;
             if (id != linksMaterielsIxMaterielStatuts.Pk)
             {
                 return NotFound();
@@ -160,7 +162,8 @@ namespace WS01.Controllers
                     }
                     _context.Update(linksMaterielsIxMaterielStatuts);                  
                     mailsend = _context.AspNetUsers.First(c => c.Id == linksMaterielsIxMaterielStatuts.FkAspNetUsers).UserName;
-                    await email.SendEmailAsync(mailsend, "matériel modifié", "champ modifié");
+                    message = _context.Materiels.First(c => c.PkMateriels == linksMaterielsIxMaterielStatuts.FkMateriels).Identifiant;
+                    await email.SendEmailAsync(mailsend, "matériel modifié","Bonjour, \n Votre demande concernant le "+ message +" a été modifié. \n Cordialement,");
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
