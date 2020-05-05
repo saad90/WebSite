@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -9,6 +11,7 @@ using WS01.Models;
 
 namespace WS01.Controllers
 {
+    [Authorize(Roles = "Admin,User")]
     public class LinksInterventionsController : Controller
     {
         private readonly WS01DBContext _context;
@@ -21,8 +24,19 @@ namespace WS01.Controllers
         // GET: LinksInterventions
         public async Task<IActionResult> Index()
         {
-            var wS01DBContext = _context.LinksInterventions.Include(l => l.FkAspNetUsersNavigation).Include(l => l.FkInterventionsTypesNavigation).Include(l => l.FkIxAntenneNavigation).Include(l => l.FkMaterielsStatutsNavigation);
-            return View(await wS01DBContext.ToListAsync());
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // will give the user's userId
+            var userNa = User.FindFirstValue(ClaimTypes.Name); // will give the user's userName
+            var useradmin = "dafbde4d-ddd0-410f-a2d8-0aa9c3de79d9";
+            if (userId == useradmin)
+            {
+                var wS01DBContext = _context.LinksInterventions.Include(l => l.FkAspNetUsersNavigation).Include(l => l.FkInterventionsTypesNavigation).Include(l => l.FkIxAntenneNavigation).Include(l => l.FkMaterielsStatutsNavigation);
+                return View(await wS01DBContext.ToListAsync()); 
+            }
+            else
+            {
+                var wS01DBContext = _context.LinksInterventions.Include(l => l.FkAspNetUsersNavigation).Where(l => l.FkAspNetUsersNavigation.Id == userId).Include(l => l.FkInterventionsTypesNavigation).Include(l => l.FkIxAntenneNavigation).Include(l => l.FkMaterielsStatutsNavigation);
+                return View(await wS01DBContext.ToListAsync());
+            }
         }
 
         // GET: LinksInterventions/Details/5
@@ -50,10 +64,13 @@ namespace WS01.Controllers
         // GET: LinksInterventions/Create
         public IActionResult Create()
         {
-            ViewData["FkAspNetUsers"] = new SelectList(_context.AspNetUsers, "Id", "Id");
+            ViewData["FkAspNetUsers"] = new SelectList(_context.AspNetUsers, "Id", "Email");
             ViewData["FkInterventionsTypes"] = new SelectList(_context.IxInterventionsTypes, "PkIxInterventionsTypes", "InterventionType");
-            ViewData["FkIxAntenne"] = new SelectList(_context.IxAntenne, "PkAntenne", "PkAntenne");
-            ViewData["FkMaterielsStatuts"] = new SelectList(_context.IxMaterielsStatuts, "PkIxMaterielsStatuts", "PkIxMaterielsStatuts");
+            ViewData["FkIxAntenne"] = new SelectList(_context.IxAntenne, "PkAntenne", "Ville");
+            ViewData["FkMaterielsStatuts"] = new SelectList(_context.IxMaterielsStatuts, "PkIxMaterielsStatuts", "MaterielStatut");
+            ViewBag.dat = DateTime.Now.ToString("dd MMMM yyyy");
+            ViewBag.idd = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
             return View();
         }
 
@@ -70,10 +87,16 @@ namespace WS01.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["FkAspNetUsers"] = new SelectList(_context.AspNetUsers, "Id", "Id", linksInterventions.FkAspNetUsers);
+            else
+            {
+                var errors = ModelState.Select(x => x.Value.Errors)
+                                       .Where(y => y.Count > 0)
+                                       .ToList();
+            }
+            ViewData["FkAspNetUsers"] = new SelectList(_context.AspNetUsers, "Id", "Email", linksInterventions.FkAspNetUsers);
             ViewData["FkInterventionsTypes"] = new SelectList(_context.IxInterventionsTypes, "PkIxInterventionsTypes", "InterventionType", linksInterventions.FkInterventionsTypes);
-            ViewData["FkIxAntenne"] = new SelectList(_context.IxAntenne, "PkAntenne", "PkAntenne", linksInterventions.FkIxAntenne);
-            ViewData["FkMaterielsStatuts"] = new SelectList(_context.IxMaterielsStatuts, "PkIxMaterielsStatuts", "PkIxMaterielsStatuts", linksInterventions.FkMaterielsStatuts);
+            ViewData["FkIxAntenne"] = new SelectList(_context.IxAntenne, "PkAntenne", "Ville", linksInterventions.FkIxAntenne);
+            ViewData["FkMaterielsStatuts"] = new SelectList(_context.IxMaterielsStatuts, "PkIxMaterielsStatuts", "MaterielStatut", linksInterventions.FkMaterielsStatuts);
             return View(linksInterventions);
         }
 

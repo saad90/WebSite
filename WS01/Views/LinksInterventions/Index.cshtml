@@ -49,16 +49,16 @@
                 @Html.DisplayFor(modelItem => item.Commentaire)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FkAspNetUsersNavigation.Id)
+                @Html.DisplayFor(modelItem => item.FkAspNetUsersNavigation.Email)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.FkInterventionsTypesNavigation.InterventionType)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FkIxAntenneNavigation.PkAntenne)
+                @Html.DisplayFor(modelItem => item.FkIxAntenneNavigation.Ville)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FkMaterielsStatutsNavigation.PkIxMaterielsStatuts)
+                @Html.DisplayFor(modelItem => item.FkMaterielsStatutsNavigation.MaterielStatut)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.PkInterventions">Edit</a> |

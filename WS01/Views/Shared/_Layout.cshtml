@@ -11,7 +11,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">WS01</a>
+                @*<a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">WS01</a>*@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -22,14 +22,17 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        <li class="nav-item">
+                        @*<li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
+                        </li>*@
 
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="LinksMaterielsIxMaterielStatuts" asp-action="Index">Links</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="LinksMaterielsIxMaterielStatuts" asp-action="Index">Links M</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="LinksInterventions" asp-action="Index">Links I</a>
                             </li>
                             if (User.IsInRole("Admin"))
                             {
@@ -40,7 +43,10 @@
                                     <a class="nav-link text-dark" asp-area="" asp-controller="IxAntennes" asp-action="Index">Antennes</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="IxMaterielsTypes" asp-action="Index">Types</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="IxMaterielsTypes" asp-action="Index">Types M</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="IxInterventionsTypes" asp-action="Index">Types I</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link text-dark" asp-area="" asp-controller="Materiels" asp-action="Index">Materiels</a>
