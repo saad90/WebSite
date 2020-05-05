@@ -42,7 +42,6 @@ namespace WS01
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
-            //services.AddScoped<IUserClaimsPrincipalFactory<IdentityUser>, UserClaimsPrincipalFactory<IdentityUser, IdentityRole>>();
             services.AddControllersWithViews();
             services.AddRazorPages();
 
