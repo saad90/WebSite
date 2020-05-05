@@ -93,7 +93,7 @@ namespace WS01.Controllers
                                        .Where(y => y.Count > 0)
                                        .ToList();
             }
-            ViewData["FkAspNetUsers"] = new SelectList(_context.AspNetUsers, "Id", "Email", linksInterventions.FkAspNetUsers);
+            ViewData["FkAspNetUsers"] = new SelectList(_context.AspNetUsers, "Id", "UserName", linksInterventions.FkAspNetUsers);
             ViewData["FkInterventionsTypes"] = new SelectList(_context.IxInterventionsTypes, "PkIxInterventionsTypes", "InterventionType", linksInterventions.FkInterventionsTypes);
             ViewData["FkIxAntenne"] = new SelectList(_context.IxAntenne, "PkAntenne", "Ville", linksInterventions.FkIxAntenne);
             ViewData["FkMaterielsStatuts"] = new SelectList(_context.IxMaterielsStatuts, "PkIxMaterielsStatuts", "MaterielStatut", linksInterventions.FkMaterielsStatuts);
@@ -113,10 +113,10 @@ namespace WS01.Controllers
             {
                 return NotFound();
             }
-            ViewData["FkAspNetUsers"] = new SelectList(_context.AspNetUsers, "Id", "Id", linksInterventions.FkAspNetUsers);
+            ViewData["FkAspNetUsers"] = new SelectList(_context.AspNetUsers, "Id", "UserName", linksInterventions.FkAspNetUsers);
             ViewData["FkInterventionsTypes"] = new SelectList(_context.IxInterventionsTypes, "PkIxInterventionsTypes", "InterventionType", linksInterventions.FkInterventionsTypes);
-            ViewData["FkIxAntenne"] = new SelectList(_context.IxAntenne, "PkAntenne", "PkAntenne", linksInterventions.FkIxAntenne);
-            ViewData["FkMaterielsStatuts"] = new SelectList(_context.IxMaterielsStatuts, "PkIxMaterielsStatuts", "PkIxMaterielsStatuts", linksInterventions.FkMaterielsStatuts);
+            ViewData["FkIxAntenne"] = new SelectList(_context.IxAntenne, "PkAntenne", "Ville", linksInterventions.FkIxAntenne);
+            ViewData["FkMaterielsStatuts"] = new SelectList(_context.IxMaterielsStatuts, "PkIxMaterielsStatuts", "MaterielStatut", linksInterventions.FkMaterielsStatuts);
             return View(linksInterventions);
         }
 

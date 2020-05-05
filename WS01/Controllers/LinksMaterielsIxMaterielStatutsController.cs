@@ -76,7 +76,7 @@ namespace WS01.Controllers
         // GET: LinksMaterielsIxMaterielStatuts/Create
         public IActionResult Create()
         {
-            ViewData["FkAspNetUsers"] = new SelectList(_context.AspNetUsers, "Id", "Email");
+            ViewData["FkAspNetUsers"] = new SelectList(_context.AspNetUsers, "Id", "UserName");
             ViewBag.idd = User.FindFirstValue(ClaimTypes.NameIdentifier);
             ViewBag.dat = DateTime.Now.ToString("dd MMMM yyyy");
             ViewData["FkIxAntenne"] = new SelectList(_context.IxAntenne, "PkAntenne", "Ville");
@@ -104,7 +104,7 @@ namespace WS01.Controllers
                                        .Where(y => y.Count > 0)
                                        .ToList();
             }
-            ViewData["FkAspNetUsers"] = new SelectList(_context.AspNetUsers, "Id", "Email");
+            ViewData["FkAspNetUsers"] = new SelectList(_context.AspNetUsers, "Id", "UserName");
             ViewData["FkIxAntenne"] = new SelectList(_context.IxAntenne, "PkAntenne", "Ville");
             ViewData["FkMateriels"] = new SelectList(_context.Materiels, "PkMateriels", "Identifiant");
             ViewData["FkMaterielsStatuts"] = new SelectList(_context.IxMaterielsStatuts, "PkIxMaterielsStatuts", "MaterielStatut");
