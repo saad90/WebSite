@@ -1,73 +1,80 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="WS01.Models.Materiels">
-    <Position X="9.25" Y="0.5" Width="1.5" />
+    <Position X="12.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAQAAAAAAAAAAAAAQAAAgAAgAAAAAABAAAA=</HashCode>
       <FileName>Models\Materiels.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="WS01.Models.LinksMaterielsIxMaterielStatuts">
-    <Position X="2.25" Y="0.5" Width="1.5" />
+    <Position X="3.25" Y="0.5" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AQAgABAAAAAEABACABAAAAAAAAQAgAAAMAAAgAAAAAA=</HashCode>
       <FileName>Models\LinksMaterielsIxMaterielStatuts.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="WS01.Models.LinksInterventions">
-    <Position X="4" Y="0.5" Width="1.5" />
+    <Position X="5.75" Y="0.5" Width="2.5" />
     <TypeIdentifier>
       <HashCode>IQAAABAAAAAEABACABAAAAAAAAQAgAAAAABAgAAAAAA=</HashCode>
       <FileName>Models\LinksInterventions.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="WS01.Models.IxMaterielsTypes">
-    <Position X="2.25" Y="3.75" Width="1.5" />
+    <Position X="8.75" Y="2.75" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAQAAAAgAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAA=</HashCode>
       <FileName>Models\IxMaterielsTypes.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="WS01.Models.IxMaterielsStatuts">
-    <Position X="5.75" Y="3.25" Width="1.5" />
+    <Position X="6" Y="4" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAgAABAAAAAAAEAAAAAAgAAAAAAAAAAA=</HashCode>
       <FileName>Models\IxMaterielsStatuts.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="WS01.Models.IxInterventionsTypes">
-    <Position X="4" Y="3.75" Width="1.5" />
+    <Position X="8.5" Y="0.5" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAABAAAAAEAAAAAAAAAAAAAAIAAAAA=</HashCode>
       <FileName>Models\IxInterventionsTypes.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="WS01.Models.IxAntenne">
-    <Position X="5.75" Y="0.5" Width="1.5" />
+    <Position X="3.25" Y="4" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAQAAAAAgAAABAAAAAAAEACAAAAgAAAAAAAAAAA=</HashCode>
       <FileName>Models\IxAntenne.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="WS01.Models.AspNetUsers">
-    <Position X="0.5" Y="0.5" Width="1.5" />
+    <Position X="0.5" Y="0.5" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AACCAAAABCAAoEAIBABAQAABQAAAQAAoARQABAAAAQA=</HashCode>
       <FileName>Models\AspNetUsers.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="WS01.Models.AspNetUserRoles">
-    <Position X="7.5" Y="3.25" Width="1.5" />
+    <Position X="12.5" Y="3.25" Width="1.25" />
     <TypeIdentifier>
       <HashCode>AAABAAIAAAAAAAAAEAAAAAgAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\AspNetUserRoles.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="WS01.Models.AspNetRoles">
-    <Position X="7.5" Y="0.5" Width="1.5" />
+    <Position X="10.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACAAAAAAAAAQAAAAAAAAQAAAAAAAAACBAABAAAAAA=</HashCode>
       <FileName>Models\AspNetRoles.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WS01.Models.Contact">
+    <Position X="10.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAAAAAAAAAAAQAJAAAAAAAAAAAAAIAAAAAA=</HashCode>
+      <FileName>Models\Contact.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />
