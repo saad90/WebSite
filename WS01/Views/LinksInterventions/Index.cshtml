@@ -1,0 +1,71 @@
+﻿@model IEnumerable<WS01.Models.LinksInterventions>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DateDebut)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateFin)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Commentaire)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FkAspNetUsersNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FkInterventionsTypesNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FkIxAntenneNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FkMaterielsStatutsNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateDebut)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateFin)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Commentaire)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FkAspNetUsersNavigation.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FkInterventionsTypesNavigation.InterventionType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FkIxAntenneNavigation.PkAntenne)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FkMaterielsStatutsNavigation.PkIxMaterielsStatuts)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.PkInterventions">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.PkInterventions">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.PkInterventions">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
