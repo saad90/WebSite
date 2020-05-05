@@ -22,6 +22,7 @@ namespace WS01.Models
         public virtual DbSet<AspNetUserRoles> AspNetUserRoles { get; set; }
         public virtual DbSet<AspNetUserTokens> AspNetUserTokens { get; set; }
         public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
+        public virtual DbSet<Contact> Contact { get; set; }
         public virtual DbSet<IxAntenne> IxAntenne { get; set; }
         public virtual DbSet<IxInterventionsTypes> IxInterventionsTypes { get; set; }
         public virtual DbSet<IxMaterielsStatuts> IxMaterielsStatuts { get; set; }
@@ -137,6 +138,26 @@ namespace WS01.Models
                 entity.Property(e => e.NormalizedUserName).HasMaxLength(256);
 
                 entity.Property(e => e.UserName).HasMaxLength(256);
+            });
+
+            modelBuilder.Entity<Contact>(entity =>
+            {
+                entity.HasKey(e => e.PkIxContact);
+
+                entity.Property(e => e.PkIxContact).HasColumnName("Pk_Ix_Contact");
+
+                entity.Property(e => e.AdresseMail)
+                    .HasMaxLength(100)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Message)
+                    .IsRequired()
+                    .HasMaxLength(1000);
+
+                entity.Property(e => e.Objet)
+                    .IsRequired()
+                    .HasMaxLength(30)
+                    .IsFixedLength();
             });
 
             modelBuilder.Entity<IxAntenne>(entity =>
