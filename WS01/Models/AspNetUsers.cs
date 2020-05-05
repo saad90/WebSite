@@ -35,5 +35,7 @@ namespace WS01.Models
         public virtual ICollection<AspNetUserRoles> AspNetUserRoles { get; set; }
         public virtual ICollection<AspNetUserTokens> AspNetUserTokens { get; set; }
         public virtual ICollection<LinksMaterielsIxMaterielStatuts> LinksMaterielsIxMaterielStatuts { get; set; }
+        public virtual ICollection<LinksInterventions> LinksInterventions { get; set; }
+
     }
 }

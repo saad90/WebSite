@@ -17,5 +17,7 @@ namespace WS01.Models
         public string Tel { get; set; }
 
         public virtual ICollection<LinksMaterielsIxMaterielStatuts> LinksMaterielsIxMaterielStatuts { get; set; }
+        public virtual ICollection<LinksInterventions> LinksInterventions { get; set; }
+
     }
 }

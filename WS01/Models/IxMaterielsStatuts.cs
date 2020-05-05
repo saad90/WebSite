@@ -16,5 +16,7 @@ namespace WS01.Models
         public string MaterielStatut { get; set; }
 
         public virtual ICollection<LinksMaterielsIxMaterielStatuts> LinksMaterielsIxMaterielStatuts { get; set; }
+        public virtual ICollection<LinksInterventions> LinksInterventions { get; set; }
+
     }
 }

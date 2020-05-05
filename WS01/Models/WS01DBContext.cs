@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace WS01.Models
 {
-    public partial class WS01DBContext : DbContext  
+    public partial class WS01DBContext : DbContext
     {
         public WS01DBContext()
         {
@@ -23,8 +23,10 @@ namespace WS01.Models
         public virtual DbSet<AspNetUserTokens> AspNetUserTokens { get; set; }
         public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
         public virtual DbSet<IxAntenne> IxAntenne { get; set; }
+        public virtual DbSet<IxInterventionsTypes> IxInterventionsTypes { get; set; }
         public virtual DbSet<IxMaterielsStatuts> IxMaterielsStatuts { get; set; }
         public virtual DbSet<IxMaterielsTypes> IxMaterielsTypes { get; set; }
+        public virtual DbSet<LinksInterventions> LinksInterventions { get; set; }
         public virtual DbSet<LinksMaterielsIxMaterielStatuts> LinksMaterielsIxMaterielStatuts { get; set; }
         public virtual DbSet<Materiels> Materiels { get; set; }
 
@@ -32,6 +34,7 @@ namespace WS01.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
                 optionsBuilder.UseSqlServer("Server=SAAD-PC\\SQLEXPRESS;Database=WS01DB;Trusted_Connection=True;");
             }
         }
@@ -158,6 +161,21 @@ namespace WS01.Models
                     .IsUnicode(false);
             });
 
+            modelBuilder.Entity<IxInterventionsTypes>(entity =>
+            {
+                entity.HasKey(e => e.PkIxInterventionsTypes);
+
+                entity.ToTable("Ix_Interventions_Types");
+
+                entity.Property(e => e.PkIxInterventionsTypes).HasColumnName("Pk_Ix_Interventions_Types");
+
+                entity.Property(e => e.InterventionType)
+                    .IsRequired()
+                    .HasColumnName("Intervention_Type")
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+            });
+
             modelBuilder.Entity<IxMaterielsStatuts>(entity =>
             {
                 entity.HasKey(e => e.PkIxMaterielsStatuts);
@@ -184,6 +202,63 @@ namespace WS01.Models
                     .HasColumnName("Materiel_Type")
                     .HasMaxLength(255)
                     .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<LinksInterventions>(entity =>
+            {
+                entity.HasKey(e => e.PkInterventions)
+                    .HasName("PK_Ix_Interventions");
+
+                entity.ToTable("LINKS_Interventions");
+
+                entity.Property(e => e.PkInterventions).HasColumnName("Pk_Interventions");
+
+                entity.Property(e => e.Commentaire).HasMaxLength(510);
+
+                entity.Property(e => e.DateDebut)
+                    .HasColumnName("Date_Debut")
+                    .HasMaxLength(100)
+                    .IsFixedLength();
+
+                entity.Property(e => e.DateFin)
+                    .HasColumnName("Date_Fin")
+                    .HasMaxLength(100)
+                    .IsFixedLength();
+
+                entity.Property(e => e.FkAspNetUsers)
+                    .IsRequired()
+                    .HasColumnName("Fk_AspNetUsers")
+                    .HasMaxLength(450);
+
+                entity.Property(e => e.FkInterventionsTypes).HasColumnName("Fk_Interventions_Types");
+
+                entity.Property(e => e.FkIxAntenne).HasColumnName("Fk_Ix_Antenne");
+
+                entity.Property(e => e.FkMaterielsStatuts).HasColumnName("Fk_Materiels_Statuts");
+
+                entity.HasOne(d => d.FkAspNetUsersNavigation)
+                    .WithMany(p => p.LinksInterventions)
+                    .HasForeignKey(d => d.FkAspNetUsers)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__LINKS_Int__Fk_As__68487DD7");
+
+                entity.HasOne(d => d.FkInterventionsTypesNavigation)
+                    .WithMany(p => p.LinksInterventions)
+                    .HasForeignKey(d => d.FkInterventionsTypes)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Ix_Interv__Fk_In__4CA06362");
+
+                entity.HasOne(d => d.FkIxAntenneNavigation)
+                    .WithMany(p => p.LinksInterventions)
+                    .HasForeignKey(d => d.FkIxAntenne)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__LINKS_Int__Fk_Ix__6A30C649");
+
+                entity.HasOne(d => d.FkMaterielsStatutsNavigation)
+                    .WithMany(p => p.LinksInterventions)
+                    .HasForeignKey(d => d.FkMaterielsStatuts)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__LINKS_Int__Fk_Ma__6B24EA82");
             });
 
             modelBuilder.Entity<LinksMaterielsIxMaterielStatuts>(entity =>
