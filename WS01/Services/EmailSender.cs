@@ -19,7 +19,7 @@ namespace WS01.Services
             {
                 UseDefaultCredentials = false,
                 EnableSsl = true,
-                Credentials = new NetworkCredential("benmakhloufsaad90@gmail.com", "Mercedes123Audi456")
+                Credentials = new NetworkCredential("benmakhloufsaad90@gmail.com", "MercedesMercedes&1")
             };
             var mailMessage = new MailMessage
             {

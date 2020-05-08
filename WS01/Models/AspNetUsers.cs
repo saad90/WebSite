@@ -12,6 +12,7 @@ namespace WS01.Models
             AspNetUserRoles = new HashSet<AspNetUserRoles>();
             AspNetUserTokens = new HashSet<AspNetUserTokens>();
             LinksMaterielsIxMaterielStatuts = new HashSet<LinksMaterielsIxMaterielStatuts>();
+            LinksInterventions = new HashSet<LinksInterventions>();
         }
 
         public string Id { get; set; }
