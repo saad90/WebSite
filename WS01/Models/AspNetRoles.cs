@@ -13,6 +13,7 @@ namespace WS01.Models
         }
 
         public string Id { get; set; }
+        [Required(ErrorMessage = "Le champ Nom du rôle doit être rempli")]
         [Display(Name = "Nom du rôle")]
         public string Name { get; set; }
         public string NormalizedName { get; set; }
