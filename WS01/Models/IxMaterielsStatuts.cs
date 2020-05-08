@@ -12,7 +12,9 @@ namespace WS01.Models
         }
 
         public int PkIxMaterielsStatuts { get; set; }
-        [Display(Name = "Statut Materiel")]
+
+        [Required(ErrorMessage = "Le champ Statut du Materiel doit être rempli")]
+        [Display(Name = "Statut du Materiel")]
         public string MaterielStatut { get; set; }
 
         public virtual ICollection<LinksMaterielsIxMaterielStatuts> LinksMaterielsIxMaterielStatuts { get; set; }

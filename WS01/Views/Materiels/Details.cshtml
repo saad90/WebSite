@@ -4,10 +4,8 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
 
 <div>
-    <h4>Materiels</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -21,11 +19,11 @@
             @Html.DisplayNameFor(model => model.FkMaterielsTypesNavigation)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FkMaterielsTypesNavigation.PkIxMaterielsTypes)
+            @Html.DisplayFor(model => model.FkMaterielsTypesNavigation.MaterielType)
         </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.PkMateriels">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model.PkMateriels">Modifier</a> |
+    <a asp-action="Index">Revenir à la page Référence</a>
 </div>
