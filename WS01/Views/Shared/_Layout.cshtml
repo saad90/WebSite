@@ -23,42 +23,55 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         @*<li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>*@
+            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </li>*@
 
                         @if (User.Identity.IsAuthenticated)
                         {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="LinksMaterielsIxMaterielStatuts" asp-action="Index">Links M</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="LinksInterventions" asp-action="Index">Links I</a>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Les Demandes
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="LinksMaterielsIxMaterielStatuts" asp-action="Index">Matériel</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="LinksInterventions" asp-action="Index">Intervention</a>
+                                </div>
                             </li>
                             if (User.IsInRole("Admin"))
                             {
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="IxMaterielsStatuts" asp-action="Index">Statuts</a>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Gestion Matériel
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="IxMaterielsStatuts" asp-action="Index">Statut</a>
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="IxMaterielsTypes" asp-action="Index">Type</a>
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="Materiels" asp-action="Index">Référence</a>
+                                    </div>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="IxAntennes" asp-action="Index">Antennes</a>
+
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Gestion Intervention
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="IxInterventionsTypes" asp-action="Index">Type</a>
+                                    </div>
                                 </li>
+
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="IxMaterielsTypes" asp-action="Index">Types M</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="IxAntennes" asp-action="Index">Agence</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="IxInterventionsTypes" asp-action="Index">Types I</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Materiels" asp-action="Index">Materiels</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="AspNetRoles" asp-action="Index">Roles</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="AspNetUserRoles" asp-action="Index">SetRole</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="AspNetUsers" asp-action="Index">Users</a>
+
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Paramètres
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="AspNetUsers" asp-action="Index">Gestion Utilisateurs</a>
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="AspNetRoles" asp-action="Index">Gestion Roles</a>
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="AspNetUserRoles" asp-action="Index">Gestion Droits</a>
+                                    </div>
                                 </li>
                             }
 
