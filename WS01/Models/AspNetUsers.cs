@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace WS01.Models
 {
@@ -16,14 +17,17 @@ namespace WS01.Models
         }
 
         public string Id { get; set; }
+        [Display(Name = "Nom d'utilisateur")]
         public string UserName { get; set; }
         public string NormalizedUserName { get; set; }
         public string Email { get; set; }
         public string NormalizedEmail { get; set; }
+        [Display(Name = "Confirmation du mail")]
         public bool EmailConfirmed { get; set; }
         public string PasswordHash { get; set; }
         public string SecurityStamp { get; set; }
         public string ConcurrencyStamp { get; set; }
+        [Display(Name = "Téléphone")]
         public string PhoneNumber { get; set; }
         public bool PhoneNumberConfirmed { get; set; }
         public bool TwoFactorEnabled { get; set; }

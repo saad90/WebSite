@@ -126,7 +126,7 @@ namespace WS01.Controllers
             }
             //ViewData["FkMaterielsTypes"] = new SelectList(_context.IxMaterielsTypes, "PkIxMaterielsTypes", "PkIxMaterielsTypes", materiels.FkMaterielsTypes);
             //ViewData["MaterielType"] = new SelectList(_context.IxMaterielsTypes, "PkIxMaterielsTypes", "MaterielType", materiels.FkMaterielsTypes);
-            ViewData["FkAspNetUsers"] = new SelectList(_context.AspNetUsers, "Id", "Email");
+            ViewData["FkAspNetUsers"] = new SelectList(_context.AspNetUsers, "Id", "UserName");
             ViewData["FkIxAntenne"] = new SelectList(_context.IxAntenne, "PkAntenne", "Ville");
             ViewData["FkMateriels"] = new SelectList(_context.Materiels, "PkMateriels", "Identifiant");
             ViewData["FkMaterielsStatuts"] = new SelectList(_context.IxMaterielsStatuts, "PkIxMaterielsStatuts", "MaterielStatut");

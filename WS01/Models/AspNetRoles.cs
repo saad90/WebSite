@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace WS01.Models
 {
@@ -12,6 +13,7 @@ namespace WS01.Models
         }
 
         public string Id { get; set; }
+        [Display(Name = "Nom du rôle")]
         public string Name { get; set; }
         public string NormalizedName { get; set; }
         public string ConcurrencyStamp { get; set; }

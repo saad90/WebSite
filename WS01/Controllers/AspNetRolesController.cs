@@ -47,6 +47,11 @@ namespace WS01.Controllers
         // GET: AspNetRoles/Create
         public IActionResult Create()
         {
+            // get last id inserted
+            string lastid = _context.AspNetRoles
+                       .OrderByDescending(p => p.Id)
+                       .FirstOrDefault().Id;
+            ViewBag.idd = Int32.Parse(lastid) + 1;
             return View();
         }
 
