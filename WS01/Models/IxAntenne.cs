@@ -8,6 +8,7 @@ namespace WS01.Models
     {
         public IxAntenne()
         {
+            LinksInterventions = new HashSet<LinksInterventions>();
             LinksMaterielsIxMaterielStatuts = new HashSet<LinksMaterielsIxMaterielStatuts>();
         }
         public int PkAntenne { get; set; }
@@ -23,6 +24,8 @@ namespace WS01.Models
         [Required(ErrorMessage = "Le champ Téléphone doit être rempli")]
         [Display(Name = "Téléphone")]
         public string Tel { get; set; }
+
+        public string Adresse { get; set; }
 
         public virtual ICollection<LinksMaterielsIxMaterielStatuts> LinksMaterielsIxMaterielStatuts { get; set; }
         public virtual ICollection<LinksInterventions> LinksInterventions { get; set; }

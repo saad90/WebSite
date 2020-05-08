@@ -55,7 +55,7 @@ namespace WS01.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PkAntenne,Ville,CodePostal,Tel")] IxAntenne ixAntenne)
+        public async Task<IActionResult> Create([Bind("PkAntenne,Ville,CodePostal,Tel,Adresse")] IxAntenne ixAntenne)
         {
             if (ModelState.IsValid)
             {
@@ -87,7 +87,7 @@ namespace WS01.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("PkAntenne,Ville,CodePostal,Tel")] IxAntenne ixAntenne)
+        public async Task<IActionResult> Edit(int id, [Bind("PkAntenne,Ville,CodePostal,Tel,Adresse")] IxAntenne ixAntenne)
         {
             if (id != ixAntenne.PkAntenne)
             {

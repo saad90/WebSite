@@ -174,16 +174,23 @@ namespace WS01.Models
 
                 entity.Property(e => e.PkAntenne).HasColumnName("Pk_Antenne");
 
+                entity.Property(e => e.Adresse)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.CodePostal)
+                    .IsRequired()
                     .HasColumnName("Code_Postal")
                     .HasMaxLength(5)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Tel)
+                    .IsRequired()
                     .HasMaxLength(10)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ville)
+                    .IsRequired()
                     .HasMaxLength(255)
                     .IsUnicode(false);
             });
