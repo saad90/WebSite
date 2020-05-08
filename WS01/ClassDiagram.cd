@@ -1,77 +1,126 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="WS01.Models.Materiels">
-    <Position X="12.5" Y="0.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAQAAAAAAAAAAAAAQAAAgAAgAAAAAABAAAA=</HashCode>
-      <FileName>Models\Materiels.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="WS01.Models.LinksMaterielsIxMaterielStatuts">
-    <Position X="3.25" Y="0.5" Width="2.25" />
+    <Position X="5.75" Y="2.25" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AQAgABAAAAAEABACABAAAAAAAAQAgAAAMAAAgAAAAAA=</HashCode>
       <FileName>Models\LinksMaterielsIxMaterielStatuts.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="WS01.Models.IxMaterielsStatuts">
+    <Position X="8.75" Y="0.5" Width="1.5" />
+    <AssociationLine Name="LinksMaterielsIxMaterielStatuts" Type="WS01.Models.LinksMaterielsIxMaterielStatuts" ManuallyRouted="true">
+      <Path>
+        <Point X="8.75" Y="1.374" />
+        <Point X="6.875" Y="1.374" />
+        <Point X="6.875" Y="2.25" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAABAAAAAAAEAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>Models\IxMaterielsStatuts.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="LinksMaterielsIxMaterielStatuts" />
+      <Property Name="LinksInterventions" />
+    </ShowAsCollectionAssociation>
+  </Class>
   <Class Name="WS01.Models.LinksInterventions">
-    <Position X="5.75" Y="0.5" Width="2.5" />
+    <Position X="11.75" Y="2.5" Width="2" />
     <TypeIdentifier>
       <HashCode>IQAAABAAAAAEABACABAAAAAAAAQAgAAAAABAgAAAAAA=</HashCode>
       <FileName>Models\LinksInterventions.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="WS01.Models.IxMaterielsTypes">
-    <Position X="8.75" Y="2.75" Width="1.75" />
-    <TypeIdentifier>
-      <HashCode>AAQAAAAgAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAA=</HashCode>
-      <FileName>Models\IxMaterielsTypes.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="WS01.Models.IxMaterielsStatuts">
-    <Position X="6" Y="4" Width="2.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAgAABAAAAAAAEAAAAAAgAAAAAAAAAAA=</HashCode>
-      <FileName>Models\IxMaterielsStatuts.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="WS01.Models.IxInterventionsTypes">
-    <Position X="8.5" Y="0.5" Width="2" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAABAAAAAEAAAAAAAAAAAAAAIAAAAA=</HashCode>
-      <FileName>Models\IxInterventionsTypes.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="WS01.Models.IxAntenne">
-    <Position X="3.25" Y="4" Width="2.5" />
+    <Position X="8.75" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAQAAAAAgAAABAAAAAAAEACAAAAgAAAAAAAAAAA=</HashCode>
       <FileName>Models\IxAntenne.cs</FileName>
     </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="LinksInterventions" />
+      <Property Name="LinksMaterielsIxMaterielStatuts" />
+    </ShowAsCollectionAssociation>
   </Class>
   <Class Name="WS01.Models.AspNetUsers">
-    <Position X="0.5" Y="0.5" Width="2.5" />
+    <Position X="8.75" Y="5" Width="2.25" />
+    <Members>
+      <Property Name="AccessFailedCount" Hidden="true" />
+      <Property Name="AspNetUserClaims" Hidden="true" />
+      <Property Name="AspNetUserLogins" Hidden="true" />
+      <Property Name="ConcurrencyStamp" Hidden="true" />
+      <Property Name="LockoutEnabled" Hidden="true" />
+      <Property Name="LockoutEnd" Hidden="true" />
+      <Property Name="NormalizedEmail" Hidden="true" />
+      <Property Name="NormalizedUserName" Hidden="true" />
+      <Property Name="PasswordHash" Hidden="true" />
+      <Property Name="PhoneNumberConfirmed" Hidden="true" />
+      <Property Name="SecurityStamp" Hidden="true" />
+      <Property Name="TwoFactorEnabled" Hidden="true" />
+    </Members>
     <TypeIdentifier>
       <HashCode>AACCAAAABCAAoEAIBABAQAABQAAAQAAoARQABAAAAQA=</HashCode>
       <FileName>Models\AspNetUsers.cs</FileName>
     </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="LinksInterventions" />
+      <Property Name="LinksMaterielsIxMaterielStatuts" />
+      <Property Name="AspNetUserRoles" />
+    </ShowAsCollectionAssociation>
   </Class>
   <Class Name="WS01.Models.AspNetUserRoles">
-    <Position X="12.5" Y="3.25" Width="1.25" />
+    <Position X="6.25" Y="6.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAABAAIAAAAAAAAAEAAAAAgAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\AspNetUserRoles.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="WS01.Models.AspNetRoles">
-    <Position X="10.75" Y="0.5" Width="1.5" />
+    <Position X="3.5" Y="6.5" Width="1.75" />
+    <Members>
+      <Property Name="AspNetRoleClaims" Hidden="true" />
+    </Members>
     <TypeIdentifier>
       <HashCode>AAACAAAAAAAAAQAAAAAAAAQAAAAAAAAACBAABAAAAAA=</HashCode>
       <FileName>Models\AspNetRoles.cs</FileName>
     </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="AspNetUserRoles" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="WS01.Models.IxInterventionsTypes">
+    <Position X="12" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAABAAAAAEAAAAAAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>Models\IxInterventionsTypes.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="LinksInterventions" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="WS01.Models.Materiels">
+    <Position X="3.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQAAAAAAAAAAAAAQAAAgAAgAAAAAABAAAA=</HashCode>
+      <FileName>Models\Materiels.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="LinksMaterielsIxMaterielStatuts" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="WS01.Models.IxMaterielsTypes">
+    <Position X="1.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAgAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>Models\IxMaterielsTypes.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Materiels" />
+    </ShowAsCollectionAssociation>
   </Class>
   <Class Name="WS01.Models.Contact">
-    <Position X="10.75" Y="3.25" Width="1.5" />
+    <Position X="1.25" Y="6.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAQAAAAAAAAAAAAQAJAAAAAAAAAAAAAIAAAAAA=</HashCode>
       <FileName>Models\Contact.cs</FileName>
