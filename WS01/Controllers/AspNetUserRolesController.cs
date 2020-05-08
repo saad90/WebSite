@@ -24,13 +24,11 @@ namespace WS01.Controllers
         public async Task<IActionResult> Index()
         {
             var wS01DBContext = _context.AspNetUserRoles.Include(a => a.Role).Include(a => a.User);
-            //var wS01DBContext = _context.AspNetUserRoles.Include(a => a.User.UserName).Include(a => a.Role.Name);
-            
             return View(await wS01DBContext.ToListAsync());
         }
 
         // GET: AspNetUserRoles/Details/5
-        public async Task<IActionResult> Details(string id)
+        public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
@@ -40,7 +38,7 @@ namespace WS01.Controllers
             var aspNetUserRoles = await _context.AspNetUserRoles
                 .Include(a => a.Role)
                 .Include(a => a.User)
-                .FirstOrDefaultAsync(m => m.UserId == id);
+                .FirstOrDefaultAsync(m => m.Pk == id);
             if (aspNetUserRoles == null)
             {
                 return NotFound();
@@ -52,17 +50,18 @@ namespace WS01.Controllers
         // GET: AspNetUserRoles/Create
         public IActionResult Create()
         {
-            ViewData["RoleId"] = new SelectList(_context.AspNetRoles, "Id", "Name");
             ViewData["UserId"] = new SelectList(_context.AspNetUsers, "Id", "UserName");
+            ViewData["RoleId"] = new SelectList(_context.AspNetRoles, "Id", "Name");
+           
             return View();
         }
 
         // POST: AspNetUserRoles/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("UserId,RoleId")] AspNetUserRoles aspNetUserRoles)
+        public async Task<IActionResult> Create([Bind("Pk,UserId,RoleId")] AspNetUserRoles aspNetUserRoles)
         {
             if (ModelState.IsValid)
             {
@@ -76,7 +75,7 @@ namespace WS01.Controllers
         }
 
         // GET: AspNetUserRoles/Edit/5
-        public async Task<IActionResult> Edit(string id)
+        public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
@@ -88,19 +87,21 @@ namespace WS01.Controllers
             {
                 return NotFound();
             }
-            ViewData["RoleId"] = new SelectList(_context.AspNetRoles, "Id", "Id", aspNetUserRoles.RoleId);
-            ViewData["UserId"] = new SelectList(_context.AspNetUsers, "Id", "Id", aspNetUserRoles.UserId);
+            ViewData["UserId"] = new SelectList(_context.AspNetUsers, "Id", "UserName", aspNetUserRoles.UserId);
+
+            ViewData["RoleId"] = new SelectList(_context.AspNetRoles, "Id", "Name", aspNetUserRoles.RoleId);
+            
             return View(aspNetUserRoles);
         }
 
         // POST: AspNetUserRoles/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("UserId,RoleId")] AspNetUserRoles aspNetUserRoles)
+        public async Task<IActionResult> Edit(int id, [Bind("Pk,UserId,RoleId")] AspNetUserRoles aspNetUserRoles)
         {
-            if (id != aspNetUserRoles.UserId)
+            if (id != aspNetUserRoles.Pk)
             {
                 return NotFound();
             }
@@ -114,7 +115,7 @@ namespace WS01.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!AspNetUserRolesExists(aspNetUserRoles.UserId))
+                    if (!AspNetUserRolesExists(aspNetUserRoles.Pk))
                     {
                         return NotFound();
                     }
@@ -125,13 +126,14 @@ namespace WS01.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["UserId"] = new SelectList(_context.AspNetUsers, "Id", "Id", "Id", aspNetUserRoles.UserId);
             ViewData["RoleId"] = new SelectList(_context.AspNetRoles, "Id", "Id", aspNetUserRoles.RoleId);
-            ViewData["UserId"] = new SelectList(_context.AspNetUsers, "Id", "Id", aspNetUserRoles.UserId);
+            
             return View(aspNetUserRoles);
         }
 
         // GET: AspNetUserRoles/Delete/5
-        public async Task<IActionResult> Delete(string id)
+        public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
             {
@@ -141,7 +143,7 @@ namespace WS01.Controllers
             var aspNetUserRoles = await _context.AspNetUserRoles
                 .Include(a => a.Role)
                 .Include(a => a.User)
-                .FirstOrDefaultAsync(m => m.UserId == id);
+                .FirstOrDefaultAsync(m => m.Pk == id);
             if (aspNetUserRoles == null)
             {
                 return NotFound();
@@ -153,7 +155,7 @@ namespace WS01.Controllers
         // POST: AspNetUserRoles/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(string id)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var aspNetUserRoles = await _context.AspNetUserRoles.FindAsync(id);
             _context.AspNetUserRoles.Remove(aspNetUserRoles);
@@ -161,9 +163,9 @@ namespace WS01.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool AspNetUserRolesExists(string id)
+        private bool AspNetUserRolesExists(int id)
         {
-            return _context.AspNetUserRoles.Any(e => e.UserId == id);
+            return _context.AspNetUserRoles.Any(e => e.Pk == id);
         }
     }
 }
