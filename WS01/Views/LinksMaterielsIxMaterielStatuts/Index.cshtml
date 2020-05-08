@@ -28,10 +28,9 @@
 }
 
 
-<h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Créer une demande</a>
 </p>
 <input class="form-control" id="myInput" type="text" placeholder="Search..">
 <br>
@@ -92,9 +91,9 @@
 
 
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Pk">Edit</a> |
+                <a asp-action="Edit" asp-route-id="@item.Pk">Modifier</a> |
                 <a asp-action="Details" asp-route-id="@item.Pk">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Pk" id="del">Delete</a>
+                <a asp-action="Delete" asp-route-id="@item.Pk" id="del">Supprimer</a>
             </td>
         </tr>
         }
