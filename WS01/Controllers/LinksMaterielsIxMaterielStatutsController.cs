@@ -13,7 +13,6 @@ using WS01.Services;
 
 namespace WS01.Controllers
 {
-    [Authorize(Roles = "Admin,User")]
     public class LinksMaterielsIxMaterielStatutsController : Controller
     {
         private readonly WS01DBContext _context;
