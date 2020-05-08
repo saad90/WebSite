@@ -45,7 +45,7 @@ namespace WS01
             services.AddControllersWithViews();
             services.AddRazorPages();
 
-            services.AddTransient<IEmailSender, EmailSender>();
+            //services.AddTransient<IEmailSender, EmailSender>();
 
             //services.Configure<AuthMessageSenderOptions>(Configuration);
         }

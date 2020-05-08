@@ -26,7 +26,7 @@ namespace WS01.Controllers
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // will give the user's userId
             var userNa = User.FindFirstValue(ClaimTypes.Name); // will give the user's userName
-            var useradmin = "dafbde4d-ddd0-410f-a2d8-0aa9c3de79d9";
+            var useradmin = _context.AspNetUserRoles.FirstOrDefault(c => c.RoleId == "1").UserId;
             if (userId == useradmin)
             {
                 var wS01DBContext = _context.LinksInterventions.Include(l => l.FkAspNetUsersNavigation).Include(l => l.FkInterventionsTypesNavigation).Include(l => l.FkIxAntenneNavigation).Include(l => l.FkMaterielsStatutsNavigation);

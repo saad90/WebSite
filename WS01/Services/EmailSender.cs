@@ -19,11 +19,11 @@ namespace WS01.Services
             {
                 UseDefaultCredentials = false,
                 EnableSsl = true,
-                Credentials = new NetworkCredential("benmakhloufsaad90@gmail.com", "MercedesMercedes&1")
+                Credentials = new NetworkCredential("fatimazahra.elhasbi@gmail.com", "Fs13091991")
             };
             var mailMessage = new MailMessage
             {
-                From = new MailAddress("benmakhloufsaad90@gmail.com")
+                From = new MailAddress("fatimazahra.elhasbi@gmail.com")
             };
             mailMessage.To.Add(email);
             mailMessage.Subject = subject;

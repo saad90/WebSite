@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WS01.Models;
+using WS01.Services;
 
 namespace WS01.Controllers
 {
@@ -14,6 +15,7 @@ namespace WS01.Controllers
     public class AspNetUsersController : Controller
     {
         private readonly WS01DBContext _context;
+        EmailSender email = new EmailSender();
 
         public AspNetUsersController(WS01DBContext context)
         {
@@ -100,6 +102,7 @@ namespace WS01.Controllers
                 {
                     _context.Update(aspNetUsers);
                     await _context.SaveChangesAsync();
+
                 }
                 catch (DbUpdateConcurrencyException)
                 {
