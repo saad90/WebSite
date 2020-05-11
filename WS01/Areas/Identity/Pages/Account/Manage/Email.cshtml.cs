@@ -31,6 +31,7 @@ namespace WS01.Areas.Identity.Pages.Account.Manage
 
         public string Username { get; set; }
 
+        [Display(Name = "Email :")]
         public string Email { get; set; }
 
         public bool IsEmailConfirmed { get; set; }
@@ -45,7 +46,7 @@ namespace WS01.Areas.Identity.Pages.Account.Manage
         {
             [Required]
             [EmailAddress]
-            [Display(Name = "New email")]
+            [Display(Name = "Nouveau email :")]
             public string NewEmail { get; set; }
         }
 
@@ -103,7 +104,7 @@ namespace WS01.Areas.Identity.Pages.Account.Manage
                     "Confirm your email",
                     $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
-                StatusMessage = "Confirmation link to change email sent. Please check your email.";
+                StatusMessage = "Lien de confirmation pour modifier l'e-mail est envoyé. Merci de consulter vos emails.";
                 return RedirectToPage();
             }
 

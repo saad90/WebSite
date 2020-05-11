@@ -30,6 +30,7 @@ namespace WS01.Areas.Identity.Pages.Account.Manage
         public class InputModel
         {
             [Required]
+            [Display(Name = "Mot de Passe :")]
             [DataType(DataType.Password)]
             public string Password { get; set; }
         }

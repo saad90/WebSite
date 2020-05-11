@@ -44,10 +44,11 @@ namespace WS01.Areas.Identity.Pages.Account
         {
             [Required]
             [EmailAddress]
+            [Display(Name = "Email :")]
             public string Email { get; set; }
 
             [Required]
-            [Display(Name = "Mot de passe ?")]
+            [Display(Name = "Mot de passe :")]
             [DataType(DataType.Password)]
             public string Password { get; set; }
 
