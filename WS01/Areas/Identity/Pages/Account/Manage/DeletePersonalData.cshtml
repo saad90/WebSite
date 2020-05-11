@@ -1,11 +1,19 @@
 ﻿@page
 @model DeletePersonalDataModel
 @{
-    ViewData["Title"] = "Delete Personal Data";
+    ViewData["Title"] = "Supprimer les Données Personnelles";
     ViewData["ActivePage"] = ManageNavPages.PersonalData;
 }
+<style>
+    body {
+        background: linear-gradient(red, white);
+    }
 
-<h4>@ViewData["Title"]</h4>
+    label {
+        color: white;
+    }
+</style>
+<h4 style="color:white">@ViewData["Title"]</h4>
 
 <div class="alert alert-warning" role="alert">
     <p>
@@ -24,9 +32,9 @@
                 <span asp-validation-for="Input.Password" class="text-danger"></span>
             </div>
         }
-    <button class="btn btn-danger" type="submit">
-        Supprimer des données et fermer mon compte
-    </button>
+        <button class="btn btn-danger" type="submit">
+            Supprimer des données et fermer mon compte
+        </button>
     </form>
 </div>
 
