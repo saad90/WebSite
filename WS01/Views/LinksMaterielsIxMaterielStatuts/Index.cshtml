@@ -8,7 +8,6 @@
         font-size : 14px;
     }
     
-    
 </style>
 @section scripts{
     <script type="text/javascript">
@@ -101,7 +100,7 @@
 
 
                     <td>
-                        <a asp-action="Edit" asp-route-id="@item.Pk">Modifier</a> |
+                        <a asp-action="Edit" asp-route-id="@item.Pk"><i class="far fa-edit"></i></a> 
                         @*<a asp-action="Details" asp-route-id="@item.Pk">Details</a> |*@
                         <a asp-action="Delete" asp-route-id="@item.Pk" id="del">Supprimer</a>
 

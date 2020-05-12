@@ -18,68 +18,60 @@
     <div class="col-md-6">
         <div class="card text-center">
             <div class="card-body">
-                <dl>
-                    <dt>
+                <dl class="row">
+                    <dt class="col-sm-4">
                         @Html.DisplayNameFor(model => model.DateDebut)
                     </dt>
-                    <dd>
+                    <dd class="col-sm-8">
                         @Html.DisplayFor(model => model.DateDebut)
                     </dd>
-                    <dt>
+                    <dt class="col-sm-4">
                         @Html.DisplayNameFor(model => model.DateFin)
                     </dt>
-                    <dd>
+                    <dd class="col-sm-8">
                         @Html.DisplayFor(model => model.DateFin)
                     </dd>
-                    <dt>
+                    <dt class="col-sm-4">
                         @Html.DisplayNameFor(model => model.Commentaire)
                     </dt>
-                    <dd>
+                    <dd class="col-sm-8">
                         @Html.DisplayFor(model => model.Commentaire)
                     </dd>
-                    <dt>
+                    <dt class="col-sm-4">
                         @Html.DisplayNameFor(model => model.FkAspNetUsersNavigation)
                     </dt>
-                    <dd>
+                    <dd class="col-sm-8">
                         @Html.DisplayFor(model => model.FkAspNetUsersNavigation.Email)
                     </dd>
-                    <dt>
+                    <dt class="col-sm-4">
                         @Html.DisplayNameFor(model => model.FkIxAntenneNavigation)
                     </dt>
-                    <dd>
+                    <dd class="col-sm-8">
                         @Html.DisplayFor(model => model.FkIxAntenneNavigation.Ville)
                     </dd>
-                    <dt>
+                    <dt class="col-sm-4">
                         @Html.DisplayNameFor(model => model.FkMaterielsNavigation)
                     </dt>
-                    <dd>
+                    <dd class="col-sm-8">
                         @Html.DisplayFor(model => model.FkMaterielsNavigation.Identifiant)
                     </dd>
-                    <dt>
+                    <dt class="col-sm-4">
                         @Html.DisplayNameFor(model => model.FkMaterielsStatutsNavigation)
                     </dt>
-                    <dd>
+                    <dd class="col-sm-8">
                         @Html.DisplayFor(model => model.FkMaterielsStatutsNavigation.MaterielStatut)
                     </dd>
                 </dl>
             </div>
             <div class="card-footer">
-
                 <form asp-action="Delete">
                     <input type="hidden" asp-for="Pk" />
                     <input type="submit" value="Supprimer" class="btn btn-danger" /> 
-
                 </form>
-
             </div>
         </div>
         <div class="col-md-3">
         </div>
     </div>
 </div>
-
 <a asp-action="Index">Retour à la page Demande</a>
-
-
-
-
