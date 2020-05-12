@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "Index";
 }
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
     table{
         font-size : 14px;
@@ -100,9 +101,9 @@
 
 
                     <td>
-                        <a asp-action="Edit" asp-route-id="@item.Pk"><i class="far fa-edit"></i></a> 
+                        <a asp-action="Edit" asp-route-id="@item.Pk"><i class="fa fa-edit" style="font-size:24px;color:black;align-content:center"></i></a>
                         @*<a asp-action="Details" asp-route-id="@item.Pk">Details</a> |*@
-                        <a asp-action="Delete" asp-route-id="@item.Pk" id="del">Supprimer</a>
+                        <a asp-action="Delete" asp-route-id="@item.Pk" id="del"><i class="fa fa-remove" style="font-size:24px;color:black;align-content:center"></i></a>
 
                     </td>
                 </tr>

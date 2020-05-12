@@ -22,9 +22,9 @@ namespace WS01.Models
         [Display(Name = "Email")]
         public string FkAspNetUsers { get; set; }
 
-        [Display(Name = "Date Début")]
+        [Display(Name = "Début")]
         public string DateDebut { get; set; }
-        [Display(Name = "Date Fin")]
+        [Display(Name = "Fin")]
         public string? DateFin { get; set; }
         public string Commentaire { get; set; }
 
