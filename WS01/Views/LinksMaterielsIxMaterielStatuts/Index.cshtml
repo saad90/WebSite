@@ -3,6 +3,13 @@
 @{
     ViewData["Title"] = "Index";
 }
+<style>
+    table{
+        font-size : 14px;
+    }
+    
+    
+</style>
 @section scripts{
     <script type="text/javascript">
         //barre de recherche
@@ -15,7 +22,11 @@
             });
         });
         $(document).ready(function () {
-            $("td:contains('Demandé')").css("color", "red");
+            $("td:contains('Demandé')").css("color", "black");
+            $("td:contains('En préparation (Accepté)')").css("color", "deeppink");
+            $("td:contains('Refusé')").css("color", "red");
+            $("td:contains('Commandé')").css("color", "#11a0c2");
+            $("td:contains('Envoyé')").css("color", "orange");
             $("td:contains('Livré')").css("color", "green");
         });
         $(document).ready(function () {
@@ -28,74 +39,73 @@
 }
 
 
+    <p>
+        <a asp-action="Create">Créer une demande</a>
+    </p>
+    <input class="form-control" id="myInput" type="text" placeholder="Rechercher un matériel..">
+    <br>
+    <table class="table table-bordered table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.FkAspNetUsersNavigation)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FkMaterielsNavigation)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FkIxAntenneNavigation)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FkMaterielsStatutsNavigation)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DateDebut)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DateFin)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Commentaire)
+                </th>
+                <th>
+                    Opérations
+                </th>
+            </tr>
+        </thead>
+        <tbody id="myTable">
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FkAspNetUsersNavigation.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FkMaterielsNavigation.Identifiant)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FkIxAntenneNavigation.Ville)
+                    </td>
+                    <td id="mat">
+                        @Html.DisplayFor(modelItem => item.FkMaterielsStatutsNavigation.MaterielStatut)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateDebut)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateFin)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Commentaire)
+                    </td>
 
-<p>
-    <a asp-action="Create">Créer une demande</a>
-</p>
-<input class="form-control" id="myInput" type="text" placeholder="Search..">
-<br>
-<table class="table table-bordered table-hover">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.FkAspNetUsersNavigation)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FkMaterielsNavigation)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FkIxAntenneNavigation)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FkMaterielsStatutsNavigation)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DateDebut)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DateFin)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Commentaire)
-            </th>
-            <th>
-                Opérations
-            </th>
-        </tr>
-    </thead>
-    <tbody id="myTable">
-        @foreach (var item in Model)
-        {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.FkAspNetUsersNavigation.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FkMaterielsNavigation.Identifiant)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FkIxAntenneNavigation.Ville)
-            </td>
-            <td id="mat">
-                @Html.DisplayFor(modelItem => item.FkMaterielsStatutsNavigation.MaterielStatut)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateDebut)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateFin)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Commentaire)
-            </td>
 
-
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Pk">Modifier</a> |
-                @*<a asp-action="Details" asp-route-id="@item.Pk">Details</a> |*@
-                <a asp-action="Delete" asp-route-id="@item.Pk" id="del">Supprimer</a>
-            </td>
-        </tr>
-        }
-    </tbody>
-</table>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Pk">Modifier</a> |
+                        @*<a asp-action="Details" asp-route-id="@item.Pk">Details</a> |*@
+                        <a asp-action="Delete" asp-route-id="@item.Pk" id="del">Supprimer</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
