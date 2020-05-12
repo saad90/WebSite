@@ -23,11 +23,6 @@
 
 
   <ItemGroup>
-    <Folder Include="wwwroot\images\" />
-  </ItemGroup>
-
-
-  <ItemGroup>
     <Content Update="wwwroot\images\links_materiel.jpeg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
